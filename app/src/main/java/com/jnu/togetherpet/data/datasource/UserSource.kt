@@ -3,8 +3,8 @@ package com.jnu.togetherpet.data.datasource
 import android.util.Log
 import com.jnu.togetherpet.data.dto.UserResponseDTO
 import com.jnu.togetherpet.data.service.UserService
-import com.jnu.togetherpet.exception.APIException
-import com.jnu.togetherpet.exception.ErrorResponse
+import com.jnu.model.APIException
+import com.jnu.model.ErrorResponse
 import com.google.gson.Gson
 import javax.inject.Inject
 
@@ -19,6 +19,11 @@ class UserSource @Inject constructor(
             return response.body()
         }
 
-        throw APIException(gson.fromJson(response.errorBody()?.string(), ErrorResponse::class.java))
+        throw com.jnu.model.APIException(
+            gson.fromJson(
+                response.errorBody()?.string(),
+                com.jnu.model.ErrorResponse::class.java
+            )
+        )
     }
 }

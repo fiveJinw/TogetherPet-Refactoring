@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.exception
+package com.jnu.model
 
 class APIException(
     val errorResponse: ErrorResponse

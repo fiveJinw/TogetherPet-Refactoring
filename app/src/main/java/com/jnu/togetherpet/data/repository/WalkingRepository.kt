@@ -6,7 +6,7 @@ import com.jnu.togetherpet.data.datasource.WalkingNetworkSource
 import com.jnu.togetherpet.data.dto.LocationDTO
 import com.jnu.togetherpet.data.dto.WalkingRequestDTO
 import com.jnu.togetherpet.data.entity.WalkEntity
-import com.jnu.togetherpet.data.entity.WalkingRecord
+import com.jnu.model.WalkingRecord
 import com.kakao.vectormap.LatLng
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -52,7 +52,7 @@ class WalkingRepository @Inject constructor(
 
     suspend fun getWalkingDataWithDateFromServer(
         date: LocalDate
-    ) : ArrayList<WalkingRecord> {
+    ) : ArrayList<com.jnu.model.WalkingRecord> {
         try {
             val formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
@@ -67,7 +67,7 @@ class WalkingRepository @Inject constructor(
                     } as ArrayList<LatLng>
                 Log.d("testt", "locationList : $locationList")
                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                WalkingRecord(
+                com.jnu.model.WalkingRecord(
                     walkingResponseDTO.walkDistance.toLong(),
                     date,
                     walkingResponseDTO.walkTime,
@@ -87,7 +87,7 @@ class WalkingRepository @Inject constructor(
 
     suspend fun getWalkingDataWithDateFromLocal(
         date: LocalDate
-    ) : ArrayList<WalkingRecord> {
+    ) : ArrayList<com.jnu.model.WalkingRecord> {
         try {
             val walkEntity = walkingLocalSource.readWalkingDataWithDate(date)
             val walkingRecordData =  walkEntity?.map { entity ->
@@ -96,7 +96,7 @@ class WalkingRepository @Inject constructor(
                         LatLng.from(location.latitude, location.longitude)
                     } as ArrayList<LatLng>
                 Log.d("testt", "locationList : $locationList")
-                WalkingRecord(
+                com.jnu.model.WalkingRecord(
                     entity.walkDistance,
                     date,
                     entity.walkTime,

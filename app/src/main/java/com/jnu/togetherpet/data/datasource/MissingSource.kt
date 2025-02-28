@@ -5,8 +5,8 @@ import com.jnu.togetherpet.data.dto.MissingDetailResponseDTO
 import com.jnu.togetherpet.data.dto.MissingRegisterRequestDTO
 import com.jnu.togetherpet.data.dto.MissingResponseDTO
 import com.jnu.togetherpet.data.service.MissingService
-import com.jnu.togetherpet.exception.APIException
-import com.jnu.togetherpet.exception.ErrorResponse
+import com.jnu.model.APIException
+import com.jnu.model.ErrorResponse
 import com.google.gson.Gson
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,10 +23,10 @@ class MissingSource @Inject constructor(
         val response = missingService.registerMissing(token, missingRegisterRequestDTO)
 
         if (!response.isSuccessful) {
-            throw APIException(
+            throw com.jnu.model.APIException(
                 gson.fromJson(
                     response.errorBody()?.string(),
-                    ErrorResponse::class.java
+                    com.jnu.model.ErrorResponse::class.java
                 )
             )
         }
@@ -42,10 +42,10 @@ class MissingSource @Inject constructor(
             return response.body()!!
         }
 
-        throw APIException(
+        throw com.jnu.model.APIException(
             gson.fromJson(
                 response.errorBody()?.string(),
-                ErrorResponse::class.java
+                com.jnu.model.ErrorResponse::class.java
             )
         )
     }
@@ -63,10 +63,10 @@ class MissingSource @Inject constructor(
         }
 
         Log.e("MissingSource", "API call failed, error: ${response.errorBody()?.string()}")
-        throw APIException(
+        throw com.jnu.model.APIException(
             gson.fromJson(
                 response.errorBody()?.string(),
-                ErrorResponse::class.java
+                com.jnu.model.ErrorResponse::class.java
             )
         )
     }

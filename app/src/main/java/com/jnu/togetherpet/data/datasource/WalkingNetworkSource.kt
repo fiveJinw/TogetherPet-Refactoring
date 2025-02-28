@@ -4,8 +4,8 @@ import android.util.Log
 import com.jnu.togetherpet.data.dto.WalkingRequestDTO
 import com.jnu.togetherpet.data.dto.WalkingResponseDTO
 import com.jnu.togetherpet.data.service.WalkingService
-import com.jnu.togetherpet.exception.APIException
-import com.jnu.togetherpet.exception.ErrorResponse
+import com.jnu.model.APIException
+import com.jnu.model.ErrorResponse
 import com.google.gson.Gson
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,10 +25,10 @@ class WalkingNetworkSource @Inject constructor(
 
         Log.d("testt", "${response.errorBody()}, ${response.body()}, ${response.code()}")
 
-        if (!response.isSuccessful) throw APIException(
+        if (!response.isSuccessful) throw com.jnu.model.APIException(
             gson.fromJson(
                 response.errorBody()?.string(),
-                ErrorResponse::class.java
+                com.jnu.model.ErrorResponse::class.java
             )
         )
     }
@@ -41,10 +41,10 @@ class WalkingNetworkSource @Inject constructor(
         return if (response.isSuccessful) {
             response.body()
         } else  {
-            throw APIException(
+            throw com.jnu.model.APIException(
                 gson.fromJson(
                     response.errorBody()?.string(),
-                    ErrorResponse::class.java
+                    com.jnu.model.ErrorResponse::class.java
                 )
             )
         }

@@ -2,8 +2,6 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.togetherpet.android.application)
@@ -11,7 +9,6 @@ plugins {
 
 android {
     namespace = "com.jnu.togetherpet"
-    compileSdk = 34
 
     defaultConfig {
         ndk {
@@ -20,11 +17,6 @@ android {
             abiFilters.add("x86")
             abiFilters.add("x86_64")
         }
-        applicationId = "com.jnu.togetherpet"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 2
-        versionName = "1.01"
 
         testInstrumentationRunner = "com.example.togetherpet.CustomTestRunner"
 
@@ -63,15 +55,6 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -96,6 +79,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.1")
     implementation("androidx.test:core-ktx:1.6.1")
+    implementation(projects.core.model)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test:rules:1.6.1")

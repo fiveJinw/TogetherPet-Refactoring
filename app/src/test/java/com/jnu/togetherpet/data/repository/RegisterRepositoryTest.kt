@@ -3,7 +3,7 @@ package com.jnu.togetherpet.data.repository
 import android.util.Log
 import com.jnu.togetherpet.data.datasource.RegisterSource
 import com.jnu.togetherpet.data.dto.PetRegisterDTO
-import com.jnu.togetherpet.exception.APIException
+import com.jnu.model.APIException
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -18,11 +18,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.exception.ErrorResponse
-import io.mockk.coVerifyOrder
-import io.mockk.coVerifySequence
+import com.jnu.model.ErrorResponse
 import io.mockk.every
-import io.mockk.verifySequence
 import java.io.File
 
 class RegisterRepositoryTest {
@@ -70,11 +67,11 @@ class RegisterRepositoryTest {
 
         coEvery {
             registerSource.registerUserAndPet(any(), any(), any(),any())
-        } throws APIException(ErrorResponse(-20401, "잘못된 종 입력."))
+        } throws com.jnu.model.APIException(com.jnu.model.ErrorResponse(-20401, "잘못된 종 입력."))
 
         val exception = runCatching {
             registerRepository.registerUserAndPet(petRegisterDTO, petImage, userName)
-        }.exceptionOrNull() as? APIException
+        }.exceptionOrNull() as? com.jnu.model.APIException
 
         assertNotNull(exception)
         assertEquals(-20401, exception?.errorResponse?.code)

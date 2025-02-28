@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.entity
+package com.jnu.model
 
 import com.kakao.vectormap.LatLng
 import java.time.LocalDate

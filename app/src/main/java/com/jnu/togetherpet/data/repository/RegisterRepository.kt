@@ -3,7 +3,7 @@ package com.jnu.togetherpet.data.repository
 import android.util.Log
 import com.jnu.togetherpet.data.datasource.RegisterSource
 import com.jnu.togetherpet.data.dto.PetRegisterDTO
-import com.jnu.togetherpet.exception.APIException
+import com.jnu.model.APIException
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,7 +27,7 @@ class RegisterRepository @Inject constructor(
                 petImage,
                 userName
             )
-        } catch (e : APIException){
+        } catch (e : com.jnu.model.APIException){
             if (e.errorResponse.code == -20401) {
                 registerSource.registerUserAndPet(
                     tokenRepository.getTokenOrThrow(),

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.exception
+package com.jnu.model
 
 data class ErrorResponse(
     val code: Int,

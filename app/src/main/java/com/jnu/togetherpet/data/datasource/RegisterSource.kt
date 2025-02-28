@@ -3,8 +3,8 @@ package com.jnu.togetherpet.data.datasource
 import android.util.Log
 import com.jnu.togetherpet.data.dto.PetRegisterDTO
 import com.jnu.togetherpet.data.service.RegisterService
-import com.jnu.togetherpet.exception.APIException
-import com.jnu.togetherpet.exception.ErrorResponse
+import com.jnu.model.APIException
+import com.jnu.model.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -38,10 +38,10 @@ class RegisterSource @Inject constructor(
         Log.d("testt", "${response.body().toString()}, ${response.errorBody().toString()}")
         if (!response.isSuccessful) {
             Log.d("testt", " Reg err : ${response.body().toString()}, ${response.errorBody().hashCode()}")
-            throw APIException(
+            throw com.jnu.model.APIException(
                 gson.fromJson(
                     response.errorBody()?.string(),
-                    ErrorResponse::class.java
+                    com.jnu.model.ErrorResponse::class.java
                 )
             )
         }

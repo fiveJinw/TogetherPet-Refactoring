@@ -5,8 +5,8 @@ import com.jnu.togetherpet.data.dto.ReportCreateRequestDTO
 import com.jnu.togetherpet.data.dto.ReportDetailResponseDTO
 import com.jnu.togetherpet.data.dto.ReportResponseDTO
 import com.jnu.togetherpet.data.service.ReportService
-import com.jnu.togetherpet.exception.APIException
-import com.jnu.togetherpet.exception.ErrorResponse
+import com.jnu.model.APIException
+import com.jnu.model.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -50,10 +50,10 @@ class ReportSource @Inject constructor(
 
 
         if (!response.isSuccessful) {
-            val e = APIException(
+            val e = com.jnu.model.APIException(
                 gson.fromJson(
                     response.errorBody()?.string(),
-                    ErrorResponse::class.java
+                    com.jnu.model.ErrorResponse::class.java
                 )
             )
             throw e
@@ -70,10 +70,10 @@ class ReportSource @Inject constructor(
             return response.body()!!
         }
 
-        throw APIException(
+        throw com.jnu.model.APIException(
             gson.fromJson(
                 response.errorBody()?.string(),
-                ErrorResponse::class.java
+                com.jnu.model.ErrorResponse::class.java
             )
         )
     }
@@ -90,10 +90,10 @@ class ReportSource @Inject constructor(
             return response.body()!!
         }
 
-        throw APIException(
+        throw com.jnu.model.APIException(
             gson.fromJson(
                 response.errorBody()?.string(),
-                ErrorResponse::class.java
+                com.jnu.model.ErrorResponse::class.java
             )
         )
     }
@@ -107,10 +107,10 @@ class ReportSource @Inject constructor(
             return response.body()!!
         }
 
-        throw APIException(
+        throw com.jnu.model.APIException(
             gson.fromJson(
                 response.errorBody()?.string(),
-                ErrorResponse::class.java
+                com.jnu.model.ErrorResponse::class.java
             )
         )
     }

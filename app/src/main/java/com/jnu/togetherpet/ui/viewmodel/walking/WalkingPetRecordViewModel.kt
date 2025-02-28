@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jnu.togetherpet.data.repository.UserRepository
 import com.jnu.togetherpet.data.repository.WalkingRepository
-import com.jnu.togetherpet.data.entity.WalkingRecord
+import com.jnu.model.WalkingRecord
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +29,7 @@ class WalkingPetRecordViewModel @Inject constructor(
     ViewModel() {
     private val _allDistance = MutableStateFlow<Long>(0)
     private val _allTime = MutableStateFlow<Long>(0)
-    private val _arrayRecord = MutableStateFlow<ArrayList<WalkingRecord>>(ArrayList())
+    private val _arrayRecord = MutableStateFlow<ArrayList<com.jnu.model.WalkingRecord>>(ArrayList())
     private val _selectDay = MutableStateFlow<LocalDate>(LocalDate.now())
     private val _base = MutableStateFlow<Long>(0)
     private val _distance = MutableStateFlow<Long>(0)
@@ -47,7 +47,7 @@ class WalkingPetRecordViewModel @Inject constructor(
     val arrayLoc: StateFlow<ArrayList<LatLng>> get() = _arrayLoc.asStateFlow()
     val allDistance: StateFlow<Long> get() = _allDistance.asStateFlow()
     val allTime: StateFlow<Long> get() = _allTime.asStateFlow()
-    val arrayRecord: StateFlow<ArrayList<WalkingRecord>> get() = _arrayRecord.asStateFlow()
+    val arrayRecord: StateFlow<ArrayList<com.jnu.model.WalkingRecord>> get() = _arrayRecord.asStateFlow()
     val startTime: StateFlow<LocalDateTime> get() = _startTime.asStateFlow()
     val endTime: StateFlow<LocalDateTime> get() = _endTime.asStateFlow()
     val selectDay: StateFlow<LocalDate> get() = _selectDay.asStateFlow()

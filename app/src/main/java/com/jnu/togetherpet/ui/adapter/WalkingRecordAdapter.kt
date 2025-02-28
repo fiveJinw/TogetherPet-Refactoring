@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jnu.togetherpet.databinding.WalkingRecordItemBinding
 import com.jnu.togetherpet.extensions.drawLine
 import com.jnu.togetherpet.extensions.formattingLocalDateTimeToString
-import com.jnu.togetherpet.data.entity.WalkingRecord
+import com.jnu.model.WalkingRecord
 import com.kakao.vectormap.GestureType
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -21,7 +21,7 @@ import java.util.Locale
 
 class WalkingRecordAdapter(
     private val listener: OnClickWalkingRecordListener
-) : ListAdapter<WalkingRecord, WalkingRecordViewHolder>(WalkingRecordDiffCallBack()) {
+) : ListAdapter<com.jnu.model.WalkingRecord, WalkingRecordViewHolder>(WalkingRecordDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WalkingRecordViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = WalkingRecordItemBinding.inflate(inflater, parent, false)
@@ -35,12 +35,12 @@ class WalkingRecordAdapter(
 
 }
 
-class WalkingRecordDiffCallBack : DiffUtil.ItemCallback<WalkingRecord>() {
-    override fun areItemsTheSame(oldItem: WalkingRecord, newItem: WalkingRecord): Boolean {
+class WalkingRecordDiffCallBack : DiffUtil.ItemCallback<com.jnu.model.WalkingRecord>() {
+    override fun areItemsTheSame(oldItem: com.jnu.model.WalkingRecord, newItem: com.jnu.model.WalkingRecord): Boolean {
         return oldItem === newItem
     }
 
-    override fun areContentsTheSame(oldItem: WalkingRecord, newItem: WalkingRecord): Boolean {
+    override fun areContentsTheSame(oldItem: com.jnu.model.WalkingRecord, newItem: com.jnu.model.WalkingRecord): Boolean {
         return oldItem.date == newItem.date && oldItem.time == newItem.time
     }
 }
@@ -55,7 +55,7 @@ class WalkingRecordViewHolder(
         }
     }
 
-    fun bind(walkingRecord: WalkingRecord) {
+    fun bind(walkingRecord: com.jnu.model.WalkingRecord) {
         binding.distanceValueItem.text = "총 ${walkingRecord.distance}m 산책했어요!"
         val time = formattingLongToTime(walkingRecord.time)
         binding.timeValueItem.text = time
@@ -64,7 +64,7 @@ class WalkingRecordViewHolder(
         initMap(walkingRecord)
     }
 
-    private fun initMap(walkingRecord: WalkingRecord) {
+    private fun initMap(walkingRecord: com.jnu.model.WalkingRecord) {
         val map = binding.walkingMapView
         map.start(object : MapLifeCycleCallback() {
 

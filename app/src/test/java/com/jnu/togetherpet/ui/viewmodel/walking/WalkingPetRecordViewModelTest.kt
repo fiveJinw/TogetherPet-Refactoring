@@ -1,7 +1,7 @@
 package com.jnu.togetherpet.ui.viewmodel.walking
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.data.entity.WalkingRecord
+import com.jnu.model.WalkingRecord
 import com.jnu.togetherpet.data.repository.UserRepository
 import com.jnu.togetherpet.data.repository.WalkingRepository
 import com.kakao.vectormap.LatLng
@@ -51,7 +51,7 @@ class WalkingPetRecordViewModelTest{
     fun `로컬에서 기록 가져오기 테스트`() = runTest {
         val date = LocalDate.now()
         val recordList = arrayListOf(
-            WalkingRecord(
+            com.jnu.model.WalkingRecord(
                 distance = 1500L,
                 time = 4000L,
                 calories = 60L,

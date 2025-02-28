@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.model
+package com.jnu.model
 
 import android.net.Uri
 

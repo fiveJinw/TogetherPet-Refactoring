@@ -3,7 +3,7 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jnu.togetherpet.data.repository.ReportRepository
-import com.jnu.togetherpet.exception.APIException
+import com.jnu.model.APIException
 import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -52,7 +52,7 @@ class ReportMissingViewModel @Inject constructor(
                 )
                 _reportStatus.value = ReportStatus.SUCCESS // 성공 시
 
-            } catch (e: APIException) {
+            } catch (e: com.jnu.model.APIException) {
                 if (e.errorResponse.code == -20401) {
                     reportRepository.registerReportByMissing(
                         color,
