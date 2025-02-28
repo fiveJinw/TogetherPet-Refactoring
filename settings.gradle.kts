@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "TogetherPet"
 include(":app")
+include(":core:model")
