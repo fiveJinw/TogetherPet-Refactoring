@@ -21,4 +21,11 @@ gradlePlugin{
             implementationClass = "AndroidApplicationConventionPlugin"
         }
     }
+
+    plugins{
+        register("androidLibrary"){
+            id = "togetherpet.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
+    }
 }
