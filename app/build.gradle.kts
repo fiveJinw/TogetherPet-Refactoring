@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.togetherpet.android.application)
 }
 
 android {
@@ -88,7 +89,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation(libs.androidx.activity)
     implementation("com.kakao.sdk:v2-user:2.20.6")
     implementation("com.kakao.maps.open:android:2.11.9")
     implementation("com.google.android.gms:play-services-location:21.3.0")
