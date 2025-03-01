@@ -8,8 +8,8 @@ import org.gradle.kotlin.dsl.configure
 
 class AndroidLibraryConventionPlugin: Plugin<Project> {
     override fun apply(target: Project) {
-        target.run {
-            pluginManager.run {
+        with(target) {
+            with(pluginManager) {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.android")
             }

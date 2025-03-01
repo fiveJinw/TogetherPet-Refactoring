@@ -28,4 +28,11 @@ gradlePlugin{
             implementationClass = "AndroidLibraryConventionPlugin"
         }
     }
+
+    plugins{
+        register("hilt"){
+            id = ""
+            implementationClass = "HiltConventionPlugin"
+        }
+    }
 }
