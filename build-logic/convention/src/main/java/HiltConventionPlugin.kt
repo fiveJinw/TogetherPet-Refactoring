@@ -22,7 +22,9 @@ class HiltConventionPlugin : Plugin<Project> {
             }
 
             pluginManager.withPlugin("com.android.base"){
-                apply("dagger.hilt.android.plugin")
+                with(pluginManager){
+                    apply("dagger.hilt.android.plugin")
+                }
                 dependencies {
                     "implementation"(libs.findLibrary("hilt.android").get())
                 }
