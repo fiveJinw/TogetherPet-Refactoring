@@ -12,6 +12,7 @@ dependencies{
     compileOnly(libs.android.tools.common)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.room.gradlePlugin)
 }
 
 gradlePlugin{
@@ -31,8 +32,15 @@ gradlePlugin{
 
     plugins{
         register("hilt"){
-            id = ""
+            id = "togetherpet.hilt"
             implementationClass = "HiltConventionPlugin"
+        }
+    }
+
+    plugins{
+        register("androidRoom"){
+            id = "togetherpet.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
         }
     }
 }

@@ -67,5 +67,6 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrai
 # Custom Convention Plugin
 togetherpet-android-application = { id = "togetherpet.android.application", version = "unspecified"}
 togetherpet-android-library = { id = "togetherpet.android.library", version = "unspecified" }
-togetherpet-hilt = { id = "togetherpet.hilt" }
+togetherpet-hilt = { id = "togetherpet.hilt", version = "unspecified" }
+togetherpet-android-room = { id = "togetherpet.android.room" }
 
