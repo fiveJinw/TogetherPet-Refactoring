@@ -3,8 +3,8 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.entity.MissingEntity
-import com.jnu.togetherpet.data.entity.ReportEntity
+import com.jnu.database.model.MissingEntity
+import com.jnu.database.model.ReportEntity
 import com.jnu.togetherpet.data.repository.MissingRepository
 import com.jnu.togetherpet.data.repository.ReportRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ButtonType
@@ -28,22 +28,22 @@ class ReportDataViewModel @Inject constructor(
     private val _selectedButton = MutableStateFlow(ButtonType.MISSING)
     val selectedButton: StateFlow<ButtonType> get() = _selectedButton
 
-    val missingReports: StateFlow<List<MissingEntity>> = missingRepository.getAllMissingReports()
+    val missingReports: StateFlow<List<com.jnu.database.model.MissingEntity>> = missingRepository.getAllMissingReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     // 내 반려동물 제보 StateFlow
-    val myPetReports: StateFlow<List<ReportEntity>> = reportRepository.getOwnReports()
+    val myPetReports: StateFlow<List<com.jnu.database.model.ReportEntity>> = reportRepository.getOwnReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     // 근처 목격 제보 StateFlow
-    val nearbySuspectedReports: StateFlow<List<ReportEntity>> = reportRepository.getNearbyReports()
+    val nearbySuspectedReports: StateFlow<List<com.jnu.database.model.ReportEntity>> = reportRepository.getNearbyReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
-    private val _missingDetail = MutableStateFlow<MissingEntity?>(null)
-    val missingDetail: StateFlow<MissingEntity?> = _missingDetail
+    private val _missingDetail = MutableStateFlow<com.jnu.database.model.MissingEntity?>(null)
+    val missingDetail: StateFlow<com.jnu.database.model.MissingEntity?> = _missingDetail
 
-    private val _suspectedDetail = MutableStateFlow<ReportEntity?>(null)
-    val suspectedDetail: StateFlow<ReportEntity?> = _suspectedDetail
+    private val _suspectedDetail = MutableStateFlow<com.jnu.database.model.ReportEntity?>(null)
+    val suspectedDetail: StateFlow<com.jnu.database.model.ReportEntity?> = _suspectedDetail
 
     private val _centerPos = MutableStateFlow<LatLng>(LatLng.from(0.0, 0.0))
     val centerPos get() = _centerPos.asStateFlow()

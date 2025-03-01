@@ -1,13 +1,10 @@
-package com.jnu.togetherpet.di
+package com.jnu.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jnu.togetherpet.data.dao.MissingDao
-import com.jnu.togetherpet.data.dao.ReportDao
-import com.jnu.togetherpet.data.dao.WalkDao
-import com.jnu.togetherpet.data.database.MissingDataBase
-import com.jnu.togetherpet.data.database.ReportDataBase
-import com.jnu.togetherpet.data.database.WalkDataBase
+import com.jnu.database.MissingDataBase
+import com.jnu.database.ReportDataBase
+import com.jnu.database.WalkDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,17 +47,17 @@ object DatabaseProvider {
     }
 
     @Provides
-    fun provideWalkDao(database: WalkDataBase): WalkDao {
+    fun provideWalkDao(database: WalkDataBase): com.jnu.database.dao.WalkDao {
         return database.walkDao()
     }
 
     @Provides
-    fun provideMissingDao(database: MissingDataBase): MissingDao {
+    fun provideMissingDao(database: MissingDataBase): com.jnu.database.dao.MissingDao {
         return database.missingDao()
     }
 
     @Provides
-    fun provideReportDao(database: ReportDataBase): ReportDao {
+    fun provideReportDao(database: ReportDataBase): com.jnu.database.dao.ReportDao {
         return database.reportDao()
     }
 }

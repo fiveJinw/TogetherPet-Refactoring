@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.jnu.togetherpet.data.entity.MissingEntity
+import com.jnu.database.model.MissingEntity
 import com.jnu.togetherpet.data.repository.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.ListMissingPetBinding
 import com.kakao.vectormap.LatLng
@@ -17,9 +17,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MissingAdapter(
-    private var missings: List<MissingEntity>,
+    private var missings: List<com.jnu.database.model.MissingEntity>,
     private val kakaoLocalRepository: KakaoLocalRepository,
-    private val onItemClicked: (MissingEntity) -> Unit
+    private val onItemClicked: (com.jnu.database.model.MissingEntity) -> Unit
 ) :
     RecyclerView.Adapter<MissingAdapter.MissingViewHolder>() {
 
@@ -62,7 +62,7 @@ class MissingAdapter(
     override fun getItemCount(): Int = missings.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateReports(newReports: List<MissingEntity>) {
+    fun updateReports(newReports: List<com.jnu.database.model.MissingEntity>) {
         Log.d("ReportAdapter", "Updating reports. New size: ${newReports.size}")
         missings = newReports
         notifyDataSetChanged()

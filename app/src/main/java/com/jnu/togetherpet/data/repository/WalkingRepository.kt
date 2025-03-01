@@ -5,8 +5,7 @@ import com.jnu.togetherpet.data.datasource.WalkingLocalSource
 import com.jnu.togetherpet.data.datasource.WalkingNetworkSource
 import com.jnu.togetherpet.data.dto.LocationDTO
 import com.jnu.togetherpet.data.dto.WalkingRequestDTO
-import com.jnu.togetherpet.data.entity.WalkEntity
-import com.jnu.model.WalkingRecord
+import com.jnu.database.model.WalkEntity
 import com.kakao.vectormap.LatLng
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -44,7 +43,16 @@ class WalkingRepository @Inject constructor(
         walkCalories : Long,
         walkDay : LocalDate
     ) {
-        val walkEntity = WalkEntity(0, distance.toLong(), walkTime, startTime, endTime, arrayLocation.toList(), walkCalories, walkDay)
+        val walkEntity = com.jnu.database.model.WalkEntity(
+            0,
+            distance.toLong(),
+            walkTime,
+            startTime,
+            endTime,
+            arrayLocation.toList(),
+            walkCalories,
+            walkDay
+        )
         walkingLocalSource.insertWalkingData(
             walkEntity
         )

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.entity
+package com.jnu.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

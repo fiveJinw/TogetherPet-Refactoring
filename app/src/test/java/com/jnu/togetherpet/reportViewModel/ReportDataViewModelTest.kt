@@ -1,8 +1,6 @@
 package com.jnu.togetherpet.reportViewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.data.entity.MissingEntity
-import com.jnu.togetherpet.data.entity.ReportEntity
 import com.jnu.togetherpet.data.repository.MissingRepository
 import com.jnu.togetherpet.data.repository.ReportRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ButtonType
@@ -11,7 +9,6 @@ import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.*
 import org.junit.After
 import org.junit.Before

@@ -26,8 +26,8 @@ import com.bumptech.glide.request.transition.Transition
 import com.jnu.togetherpet.data.repository.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.adapter.SearchingBtnListAdapter
-import com.jnu.togetherpet.data.entity.MissingEntity
-import com.jnu.togetherpet.data.entity.ReportEntity
+import com.jnu.database.model.MissingEntity
+import com.jnu.database.model.ReportEntity
 import com.jnu.togetherpet.data.repository.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.FragmentSearchingPetBinding
 import com.jnu.togetherpet.extensions.toBitmap
@@ -203,7 +203,7 @@ class SearchingPetFragment : Fragment() {
         }
     }
 
-    private suspend fun setMissingMarker(missings: List<MissingEntity>) {
+    private suspend fun setMissingMarker(missings: List<com.jnu.database.model.MissingEntity>) {
         val labelManager: LabelManager? = kakaoMap?.labelManager
         labelManager?.clearAll() // 기존 마커 초기화
 
@@ -282,7 +282,7 @@ class SearchingPetFragment : Fragment() {
         bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
     }
 
-    private suspend fun setReportMarker(suspected: List<ReportEntity>) {
+    private suspend fun setReportMarker(suspected: List<com.jnu.database.model.ReportEntity>) {
         val labelManager: LabelManager? = kakaoMap?.labelManager
         labelManager?.clearAll() // 기존 마커 초기화
 

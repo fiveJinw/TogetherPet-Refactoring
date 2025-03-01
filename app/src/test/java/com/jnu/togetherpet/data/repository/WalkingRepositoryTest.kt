@@ -1,14 +1,10 @@
 package com.jnu.togetherpet.data.repository
 
-import android.net.Uri
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jnu.togetherpet.data.datasource.WalkingLocalSource
 import com.jnu.togetherpet.data.datasource.WalkingNetworkSource
-import com.jnu.togetherpet.data.dto.LocationDTO
-import com.jnu.togetherpet.data.dto.WalkingRequestDTO
-import com.jnu.togetherpet.data.entity.WalkEntity
-import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetViewModel
+import com.jnu.database.model.WalkEntity
 import com.kakao.vectormap.LatLng
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -70,7 +66,7 @@ class WalkingRepositoryTest{
         // Assert
         coVerify {
             mockLocalSource.insertWalkingData(
-                withArg<WalkEntity> {
+                withArg<com.jnu.database.model.WalkEntity> {
                     assertEquals(distance.toLong(), it.walkDistance)
                     assertEquals(walkTime, it.walkTime)
                     assertEquals(startTime, it.walkStartTime)
@@ -88,7 +84,7 @@ class WalkingRepositoryTest{
         // Arrange
         val date = LocalDate.now()
         val entities = listOf(
-            WalkEntity(
+            com.jnu.database.model.WalkEntity(
                 id = 1,
                 walkDistance = 500L,
                 walkTime = 1000L,
