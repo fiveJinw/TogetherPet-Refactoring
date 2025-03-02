@@ -21,3 +21,5 @@ rootProject.name = "TogetherPet"
 include(":app")
 include(":core:model")
 include(":core:database")
+include(":core:network")
+include(":core:data")

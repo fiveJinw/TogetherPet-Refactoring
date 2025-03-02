@@ -1,20 +1,19 @@
 package com.jnu.togetherpet.data.repository
 
 import android.util.Log
-import com.jnu.togetherpet.data.datasource.RegisterSource
-import com.jnu.togetherpet.data.dto.PetRegisterDTO
-import com.jnu.model.APIException
+import com.jnu.network.datasource.RegisterSource
+import com.jnu.network.model.PetRegisterDTO
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class RegisterRepository @Inject constructor(
-    private val registerSource: RegisterSource,
+    private val registerSource: com.jnu.network.datasource.RegisterSource,
     private val tokenRepository: TokenRepository
 ) {
     suspend fun registerUserAndPet(
-        petRegisterDTO: PetRegisterDTO,
+        petRegisterDTO: com.jnu.network.model.PetRegisterDTO,
         petImage: File,
         userName: String
     ) {
@@ -31,11 +30,25 @@ class RegisterRepository @Inject constructor(
             if (e.errorResponse.code == -20401) {
                 registerSource.registerUserAndPet(
                     tokenRepository.getTokenOrThrow(),
-                    PetRegisterDTO(petRegisterDTO.petNAme, petRegisterDTO.petBirthMonth, "말티즈", petRegisterDTO.isNeutering, petRegisterDTO.petFeature),
+                    com.jnu.network.model.PetRegisterDTO(
+                        petRegisterDTO.petNAme,
+                        petRegisterDTO.petBirthMonth,
+                        "말티즈",
+                        petRegisterDTO.isNeutering,
+                        petRegisterDTO.petFeature
+                    ),
                     petImage,
                     userName
                 )
-                Log.d("testt", "보내기 :${PetRegisterDTO(petRegisterDTO.petNAme, petRegisterDTO.petBirthMonth, "말티즈", petRegisterDTO.isNeutering, petRegisterDTO.petFeature)}")
+                Log.d("testt", "보내기 :${
+                    com.jnu.network.model.PetRegisterDTO(
+                        petRegisterDTO.petNAme,
+                        petRegisterDTO.petBirthMonth,
+                        "말티즈",
+                        petRegisterDTO.isNeutering,
+                        petRegisterDTO.petFeature
+                    )
+                }")
                 Log.d("testt", "종없음 : ${e.hashCode()}, ${e.errorResponse.hashCode()}, ${e.message}")
             }
             else{

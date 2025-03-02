@@ -2,9 +2,6 @@ package com.jnu.togetherpet.data.repository
 
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.data.datasource.WalkingLocalSource
-import com.jnu.togetherpet.data.datasource.WalkingNetworkSource
-import com.jnu.database.model.WalkEntity
 import com.kakao.vectormap.LatLng
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -27,7 +24,7 @@ class WalkingRepositoryTest{
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
     private lateinit var walkingRepository: WalkingRepository
-    private val mockNetworkSource: WalkingNetworkSource = mockk(relaxed = true)
+    private val mockNetworkSource: com.jnu.network.datasource.WalkingNetworkSource = mockk(relaxed = true)
     private val mockTokenRepository: TokenRepository = mockk(relaxed = true)
     private val mockLocalSource: WalkingLocalSource = mockk(relaxed = true)
 

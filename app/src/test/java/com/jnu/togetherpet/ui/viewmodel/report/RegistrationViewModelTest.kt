@@ -3,7 +3,6 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import android.net.Uri
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.data.dto.PetRegisterDTO
 import com.jnu.togetherpet.data.repository.DataStoreRepository
 import com.jnu.togetherpet.data.repository.RegisterRepository
 import io.mockk.coVerify
@@ -12,7 +11,6 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert.*
 import org.junit.Before

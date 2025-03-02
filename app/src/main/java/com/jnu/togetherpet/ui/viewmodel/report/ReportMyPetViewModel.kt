@@ -3,7 +3,7 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jnu.togetherpet.data.repository.DataStoreRepository
-import com.jnu.togetherpet.data.dto.MissingRegisterRequestDTO
+import com.jnu.network.model.MissingRegisterRequestDTO
 import com.jnu.togetherpet.data.repository.MissingRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -52,7 +52,7 @@ class ReportMyPetViewModel @Inject constructor(
     ) {
         val parsedDate = convertDateFormat(foundDate)
 
-        val missingRegisterRequestDTO = MissingRegisterRequestDTO(
+        val missingRegisterRequestDTO = com.jnu.network.model.MissingRegisterRequestDTO(
             petName = _petName.value,
             petGender = gender,
             birthMonth = _birthMonth.value,
@@ -71,7 +71,7 @@ class ReportMyPetViewModel @Inject constructor(
                 _reportStatus.value = ReportStatus.SUCCESS // 성공 시
             } catch (e: Exception) {
                 if(e.hashCode() == -268512456){
-                    val missingDTO = MissingRegisterRequestDTO(
+                    val missingDTO = com.jnu.network.model.MissingRegisterRequestDTO(
                         petName = _petName.value,
                         petGender = gender,
                         birthMonth = _birthMonth.value,

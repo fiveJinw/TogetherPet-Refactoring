@@ -1,12 +1,11 @@
 package com.jnu.togetherpet.data.repository
 
 import androidx.core.net.toUri
-import com.jnu.model.UserData
-import com.jnu.togetherpet.data.datasource.UserSource
+import com.jnu.network.datasource.UserSource
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
-    private val userSource: UserSource,
+    private val userSource: com.jnu.network.datasource.UserSource,
     private val tokenRepository: TokenRepository
 ) {
     suspend fun getUserData(): com.jnu.model.UserData {

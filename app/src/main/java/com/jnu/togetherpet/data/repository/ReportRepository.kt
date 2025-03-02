@@ -2,10 +2,8 @@ package com.jnu.togetherpet.data.repository
 
 import android.content.Context
 import android.util.Log
-import com.jnu.database.dao.ReportDao
-import com.jnu.togetherpet.data.datasource.ReportSource
-import com.jnu.togetherpet.data.dto.ReportCreateRequestDTO
-import com.jnu.database.model.ReportEntity
+import com.jnu.network.datasource.ReportSource
+import com.jnu.network.model.ReportCreateRequestDTO
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -15,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class ReportRepository @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val reportSource: ReportSource,
+    private val reportSource: com.jnu.network.datasource.ReportSource,
     private val tokenRepository: TokenRepository,
     private val reportDao: com.jnu.database.dao.ReportDao
 ) {
@@ -33,7 +31,7 @@ class ReportRepository @Inject constructor(
     ) {
         reportSource.registerReport(
             tokenRepository.getTokenOrThrow(),
-            ReportCreateRequestDTO(
+            com.jnu.network.model.ReportCreateRequestDTO(
                 color,
                 foundLatitude,
                 foundLongitude,
@@ -61,7 +59,7 @@ class ReportRepository @Inject constructor(
 
         reportSource.registerReport(
             tokenRepository.getTokenOrThrow(),
-            ReportCreateRequestDTO(
+            com.jnu.network.model.ReportCreateRequestDTO(
                 color,
                 foundLatitude,
                 foundLongitude,

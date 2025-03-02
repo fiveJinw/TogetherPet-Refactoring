@@ -2,22 +2,20 @@ package com.jnu.togetherpet.data.repository
 
 import android.content.Context
 import android.util.Log
-import com.jnu.database.dao.MissingDao
-import com.jnu.togetherpet.data.datasource.MissingSource
-import com.jnu.togetherpet.data.dto.MissingRegisterRequestDTO
-import com.jnu.database.model.MissingEntity
+import com.jnu.network.datasource.MissingSource
+import com.jnu.network.model.MissingRegisterRequestDTO
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MissingRepository @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val missingSource: MissingSource,
+    private val missingSource: com.jnu.network.datasource.MissingSource,
     private val tokenRepository: TokenRepository,
     private val missingDao: com.jnu.database.dao.MissingDao
 ) {
     suspend fun registerMissing(
-        missingRegisterRequestDTO: MissingRegisterRequestDTO
+        missingRegisterRequestDTO: com.jnu.network.model.MissingRegisterRequestDTO
     ) {
         missingSource.registerMissing(
             tokenRepository.getTokenOrThrow(),

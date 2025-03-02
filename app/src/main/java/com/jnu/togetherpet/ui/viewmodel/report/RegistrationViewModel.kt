@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jnu.togetherpet.data.repository.DataStoreRepository
-import com.jnu.togetherpet.data.dto.PetRegisterDTO
+import com.jnu.network.model.PetRegisterDTO
 import com.jnu.togetherpet.data.repository.RegisterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -95,7 +95,7 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
-    fun mapToRegisterDTO() = PetRegisterDTO(
+    fun mapToRegisterDTO() = com.jnu.network.model.PetRegisterDTO(
         _petName.value,
         _petAge.value,
         _petSpecies.value,

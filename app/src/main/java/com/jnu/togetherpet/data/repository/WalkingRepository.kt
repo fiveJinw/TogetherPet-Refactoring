@@ -1,11 +1,6 @@
 package com.jnu.togetherpet.data.repository
 
 import android.util.Log
-import com.jnu.togetherpet.data.datasource.WalkingLocalSource
-import com.jnu.togetherpet.data.datasource.WalkingNetworkSource
-import com.jnu.togetherpet.data.dto.LocationDTO
-import com.jnu.togetherpet.data.dto.WalkingRequestDTO
-import com.jnu.database.model.WalkEntity
 import com.kakao.vectormap.LatLng
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -15,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 class WalkingRepository @Inject constructor(
-    private val walkingNetworkSource: WalkingNetworkSource,
+    private val walkingNetworkSource: com.jnu.network.datasource.WalkingNetworkSource,
     private val tokenRepository: TokenRepository,
     private val walkingLocalSource : WalkingLocalSource
 ) {
@@ -26,11 +21,11 @@ class WalkingRepository @Inject constructor(
         arrayLocation : ArrayList<LatLng>
     ) {
         val locationList = arrayLocation.map { latLng ->
-            LocationDTO(latLng.latitude, latLng.longitude)
+            com.jnu.network.model.LocationDTO(latLng.latitude, latLng.longitude)
         }
         walkingNetworkSource.postWalkingData(
             tokenRepository.getTokenOrThrow(),
-            WalkingRequestDTO(distance.toFloat(), time, locationList)
+            com.jnu.network.model.WalkingRequestDTO(distance.toFloat(), time, locationList)
         )
     }
 

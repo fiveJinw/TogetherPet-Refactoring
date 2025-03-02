@@ -1,9 +1,8 @@
 package com.jnu.togetherpet.data.repository
 
 import android.util.Log
-import com.jnu.togetherpet.data.datasource.RegisterSource
-import com.jnu.togetherpet.data.dto.PetRegisterDTO
-import com.jnu.model.APIException
+import com.jnu.network.datasource.RegisterSource
+import com.jnu.network.model.PetRegisterDTO
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -18,7 +17,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.model.ErrorResponse
 import io.mockk.every
 import java.io.File
 
@@ -27,7 +25,7 @@ class RegisterRepositoryTest {
     @get:Rule
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
-    private val registerSource = mockk<RegisterSource>(relaxed = true)
+    private val registerSource = mockk<com.jnu.network.datasource.RegisterSource>(relaxed = true)
     private val tokenRepository = mockk<TokenRepository>(relaxed = true)
     private lateinit var registerRepository: RegisterRepository
     private val testDispatcher = StandardTestDispatcher()
@@ -43,7 +41,7 @@ class RegisterRepositoryTest {
 
     @Test
     fun `사용자와 반려동물 등록 성공 테스트`() = runTest {
-        val petRegisterDTO = PetRegisterDTO("뽀삐", 7L, "말티즈", true, "낯을 안가림")
+        val petRegisterDTO = com.jnu.network.model.PetRegisterDTO("뽀삐", 7L, "말티즈", true, "낯을 안가림")
         val petImage = mockk<File>(relaxed = true)
         val userName = "짱구"
 
@@ -61,7 +59,7 @@ class RegisterRepositoryTest {
 
     @Test
     fun `APIException 조건 처리 테스트`() = runTest {
-        val petRegisterDTO = PetRegisterDTO("뽀삐", 7L, "고양이", true, "낯을 안가림")
+        val petRegisterDTO = com.jnu.network.model.PetRegisterDTO("뽀삐", 7L, "고양이", true, "낯을 안가림")
         val petImage = mockk<File>(relaxed = true)
         val userName = "짱구"
 
