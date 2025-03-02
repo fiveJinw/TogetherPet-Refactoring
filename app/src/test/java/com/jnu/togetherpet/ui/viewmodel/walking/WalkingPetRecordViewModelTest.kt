@@ -1,9 +1,8 @@
 package com.jnu.togetherpet.ui.viewmodel.walking
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.model.WalkingRecord
-import com.jnu.togetherpet.data.repository.UserRepository
-import com.jnu.togetherpet.data.repository.WalkingRepository
+import com.jnu.data.repo.UserRepository
+import com.jnu.data.repo.WalkingRepository
 import com.kakao.vectormap.LatLng
 import io.mockk.coEvery
 import io.mockk.every
@@ -25,8 +24,8 @@ class WalkingPetRecordViewModelTest{
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: WalkingPetRecordViewModel
-    private val walkingRepository = mockk<WalkingRepository>(relaxed = true)
-    private val userRepository = mockk<UserRepository>(relaxed = true)
+    private val walkingRepository = mockk<com.jnu.data.repo.WalkingRepository>(relaxed = true)
+    private val userRepository = mockk<com.jnu.data.repo.UserRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 
     @Before

@@ -23,10 +23,10 @@ class WalkingRepositoryTest{
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
-    private lateinit var walkingRepository: WalkingRepository
+    private lateinit var walkingRepository: com.jnu.data.repo.WalkingRepository
     private val mockNetworkSource: com.jnu.network.datasource.WalkingNetworkSource = mockk(relaxed = true)
-    private val mockTokenRepository: TokenRepository = mockk(relaxed = true)
-    private val mockLocalSource: WalkingLocalSource = mockk(relaxed = true)
+    private val mockTokenRepository: com.jnu.data.repo.TokenRepository = mockk(relaxed = true)
+    private val mockLocalSource: com.jnu.data.repo.WalkingLocalSource = mockk(relaxed = true)
 
     private val testDispatcher = StandardTestDispatcher()
 
@@ -37,7 +37,7 @@ class WalkingRepositoryTest{
         Dispatchers.setMain(testDispatcher)
         mockkStatic(Log::class)
         every { Log.d(any(), any()) } returns 0
-        walkingRepository = WalkingRepository(
+        walkingRepository = com.jnu.data.repo.WalkingRepository(
             walkingNetworkSource = mockNetworkSource,
             tokenRepository = mockTokenRepository,
             walkingLocalSource = mockLocalSource

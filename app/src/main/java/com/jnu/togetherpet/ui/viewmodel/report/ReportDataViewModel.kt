@@ -3,10 +3,8 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.database.model.MissingEntity
-import com.jnu.database.model.ReportEntity
-import com.jnu.togetherpet.data.repository.MissingRepository
-import com.jnu.togetherpet.data.repository.ReportRepository
+import com.jnu.data.repo.MissingRepository
+import com.jnu.data.repo.ReportRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ButtonType
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ReportDataViewModel @Inject constructor(
-    private val reportRepository: ReportRepository,
-    private val missingRepository: MissingRepository
+    private val reportRepository: com.jnu.data.repo.ReportRepository,
+    private val missingRepository: com.jnu.data.repo.MissingRepository
 ) : ViewModel() {
 
     private val _selectedButton = MutableStateFlow(ButtonType.MISSING)

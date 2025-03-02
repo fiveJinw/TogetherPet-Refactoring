@@ -3,8 +3,7 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.repository.ReportRepository
-import com.jnu.model.APIException
+import com.jnu.data.repo.ReportRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ReportSuspectedViewModel @Inject constructor(
-    private val reportRepository : ReportRepository
+    private val reportRepository : com.jnu.data.repo.ReportRepository
 ) : ViewModel() {
 
     private val _reportStatus = MutableStateFlow(ReportStatus.IDLE)

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.repository
+package com.jnu.data.repo
 
 import android.util.Log
 import com.kakao.vectormap.LatLng

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.repository
+package com.jnu.data.repo
 
 import com.jnu.database.dao.WalkDao
 import com.jnu.database.model.WalkEntity

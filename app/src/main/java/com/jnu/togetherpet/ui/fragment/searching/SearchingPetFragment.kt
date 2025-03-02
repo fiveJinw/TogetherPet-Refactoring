@@ -26,9 +26,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.jnu.togetherpet.data.repository.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.adapter.SearchingBtnListAdapter
-import com.jnu.database.model.MissingEntity
-import com.jnu.database.model.ReportEntity
-import com.jnu.togetherpet.data.repository.KakaoLocalRepository
+import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.FragmentSearchingPetBinding
 import com.jnu.togetherpet.extensions.toBitmap
 import com.jnu.togetherpet.ui.adapter.MissingAdapter
@@ -61,7 +59,7 @@ class SearchingPetFragment : Fragment() {
 
     //위도, 경도 -> 주소
     @Inject
-    lateinit var kakaoLocalRepository: KakaoLocalRepository
+    lateinit var kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository
 
     //실종 제보 데이터 저장
     private val reportDataViewModel: ReportDataViewModel by viewModels()

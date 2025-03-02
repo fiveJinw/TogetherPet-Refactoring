@@ -1,6 +1,6 @@
 package com.jnu.togetherpet.reportViewModel
 
-import com.jnu.togetherpet.data.repository.ReportRepository
+import com.jnu.data.repo.ReportRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
 import com.jnu.togetherpet.ui.viewmodel.report.ReportMissingViewModel
 import io.mockk.*
@@ -17,7 +17,7 @@ import java.io.File
 @OptIn(ExperimentalCoroutinesApi::class)
 class ReportMissingViewModelTest {
     private lateinit var viewModel: ReportMissingViewModel
-    private val mockReportRepository: ReportRepository = mockk(relaxed = true)  //반환 X
+    private val mockReportRepository: com.jnu.data.repo.ReportRepository = mockk(relaxed = true)  //반환 X
     private val testDispatcher = StandardTestDispatcher()
 
     @Before

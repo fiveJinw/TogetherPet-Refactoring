@@ -5,8 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jnu.togetherpet.data.repository.DataStoreRepository
-import com.jnu.network.model.PetRegisterDTO
-import com.jnu.togetherpet.data.repository.RegisterRepository
+import com.jnu.data.repo.RegisterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
-    private val registerRepository: RegisterRepository,
+    private val registerRepository: com.jnu.data.repo.RegisterRepository,
     private val dataStoreRepository: DataStoreRepository
 ) :
     ViewModel() {

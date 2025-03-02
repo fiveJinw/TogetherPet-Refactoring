@@ -8,8 +8,8 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.repository.UserRepository
-import com.jnu.togetherpet.data.repository.WalkingRepository
+import com.jnu.data.repo.UserRepository
+import com.jnu.data.repo.WalkingRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -38,8 +38,8 @@ import kotlin.math.sqrt
 class WalkingPetViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val fusedLocationProviderClient: FusedLocationProviderClient,
-    private val walkingRepository: WalkingRepository,
-    private val userRepository: UserRepository,
+    private val walkingRepository: com.jnu.data.repo.WalkingRepository,
+    private val userRepository: com.jnu.data.repo.UserRepository,
     private val dataStoreRepository: DataStoreRepository
 ) :
     ViewModel() {

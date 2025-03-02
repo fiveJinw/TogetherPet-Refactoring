@@ -1,8 +1,8 @@
 package com.jnu.togetherpet.reportViewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.data.repository.MissingRepository
-import com.jnu.togetherpet.data.repository.ReportRepository
+import com.jnu.data.repo.MissingRepository
+import com.jnu.data.repo.ReportRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ButtonType
 import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import io.mockk.*
@@ -25,8 +25,8 @@ class ReportDataViewModelTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: ReportDataViewModel
-    private val mockReportRepository: ReportRepository = mockk(relaxed = true)
-    private val mockMissingRepository: MissingRepository = mockk(relaxed = true)
+    private val mockReportRepository: com.jnu.data.repo.ReportRepository = mockk(relaxed = true)
+    private val mockMissingRepository: com.jnu.data.repo.MissingRepository = mockk(relaxed = true)
 
     private val testDispatcher = StandardTestDispatcher()
 

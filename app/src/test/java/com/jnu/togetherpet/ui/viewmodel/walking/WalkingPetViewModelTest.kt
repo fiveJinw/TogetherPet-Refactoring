@@ -5,17 +5,14 @@ import android.net.Uri
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.jnu.togetherpet.data.repository.UserRepository
-import com.jnu.togetherpet.data.repository.WalkingRepository
-import com.jnu.togetherpet.ui.fragment.walking.WalkingPetFragment
+import com.jnu.data.repo.UserRepository
+import com.jnu.data.repo.WalkingRepository
 import com.kakao.vectormap.LatLng
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
-import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -25,7 +22,6 @@ import org.junit.Before
 import org.junit.Rule
 
 import org.junit.Test
-import org.junit.runner.manipulation.Ordering
 
 class WalkingPetViewModelTest {
 
@@ -35,8 +31,8 @@ class WalkingPetViewModelTest {
     private lateinit var viewModel: WalkingPetViewModel
     private val context = mockk<Context>(relaxed = true)
     private val fusedLocationProviderClient = mockk<FusedLocationProviderClient>(relaxed = true)
-    private val walkingRepository = mockk<WalkingRepository>(relaxed = true)
-    private val userRepository = mockk<UserRepository>(relaxed = true)
+    private val walkingRepository = mockk<com.jnu.data.repo.WalkingRepository>(relaxed = true)
+    private val userRepository = mockk<com.jnu.data.repo.UserRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 
     @Before

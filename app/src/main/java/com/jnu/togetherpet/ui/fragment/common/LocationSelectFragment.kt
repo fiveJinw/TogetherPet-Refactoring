@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
-import com.jnu.togetherpet.data.repository.KakaoLocalRepository
+import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.FragmentLocationSelectBinding
 import com.jnu.togetherpet.location.LocationProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,7 +28,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LocationSelectFragment : DialogFragment() {
     @Inject
-    lateinit var kakaoLocalRepository: KakaoLocalRepository
+    lateinit var kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository
 
     private var _binding: FragmentLocationSelectBinding? = null
     private val binding get() = _binding!!

@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.jnu.togetherpet.R
-import com.jnu.togetherpet.data.repository.KakaoLocalRepository
+import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.utils.DpUtils
 import com.jnu.togetherpet.databinding.MissingBottomSheetBinding
 import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
@@ -30,7 +30,7 @@ class MissingBottomSheetFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
     private val reportDataViewModel: ReportDataViewModel by activityViewModels ()
     @Inject
-    lateinit var kakaoLocalRepository: KakaoLocalRepository
+    lateinit var kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository
 
     companion object {
         private const val ARG_MISSING_ID = "missing_id"

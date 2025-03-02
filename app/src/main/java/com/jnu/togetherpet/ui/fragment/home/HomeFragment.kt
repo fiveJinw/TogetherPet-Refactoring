@@ -20,7 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.jnu.togetherpet.data.repository.DataStoreRepository
 import com.jnu.togetherpet.R
-import com.jnu.togetherpet.data.repository.KakaoLocalRepository
+import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.FragmentHomeBinding
 import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetRecordViewModel
 import com.jnu.togetherpet.ui.adapter.MissingAdapter
@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
     lateinit var dataStoreRepository: DataStoreRepository
 
     @Inject
-    lateinit var kakaoLocalRepository: KakaoLocalRepository
+    lateinit var kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository
 
     //산책 데이터
     private val walkingPetRecordViewModel: WalkingPetRecordViewModel by viewModels()

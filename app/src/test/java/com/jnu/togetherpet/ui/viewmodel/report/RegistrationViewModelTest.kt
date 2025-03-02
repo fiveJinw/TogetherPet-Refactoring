@@ -4,7 +4,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jnu.togetherpet.data.repository.DataStoreRepository
-import com.jnu.togetherpet.data.repository.RegisterRepository
+import com.jnu.data.repo.RegisterRepository
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
@@ -25,7 +25,7 @@ class RegistrationViewModelTest {
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: RegistrationViewModel
-    private val mockRegisterRepository = mockk<RegisterRepository>(relaxed = true)
+    private val mockRegisterRepository = mockk<com.jnu.data.repo.RegisterRepository>(relaxed = true)
     private val mockDataStoreRepository = mockk<DataStoreRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 

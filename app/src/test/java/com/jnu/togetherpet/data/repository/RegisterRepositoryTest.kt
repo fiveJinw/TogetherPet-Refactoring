@@ -1,8 +1,6 @@
 package com.jnu.togetherpet.data.repository
 
 import android.util.Log
-import com.jnu.network.datasource.RegisterSource
-import com.jnu.network.model.PetRegisterDTO
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -26,8 +24,8 @@ class RegisterRepositoryTest {
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
     private val registerSource = mockk<com.jnu.network.datasource.RegisterSource>(relaxed = true)
-    private val tokenRepository = mockk<TokenRepository>(relaxed = true)
-    private lateinit var registerRepository: RegisterRepository
+    private val tokenRepository = mockk<com.jnu.data.repo.TokenRepository>(relaxed = true)
+    private lateinit var registerRepository: com.jnu.data.repo.RegisterRepository
     private val testDispatcher = StandardTestDispatcher()
 
     @Before
@@ -35,7 +33,7 @@ class RegisterRepositoryTest {
         Dispatchers.setMain(testDispatcher)
         mockkStatic(Log::class)
         every { Log.d(any(), any()) } returns 0
-        registerRepository = RegisterRepository(registerSource, tokenRepository)
+        registerRepository = com.jnu.data.repo.RegisterRepository(registerSource, tokenRepository)
         coEvery { tokenRepository.getTokenOrThrow() } returns "token bearer"
     }
 

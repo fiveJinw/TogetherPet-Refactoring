@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.jnu.database.model.ReportEntity
-import com.jnu.togetherpet.data.repository.KakaoLocalRepository
+import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.ListMissingPetBinding
 import com.kakao.vectormap.LatLng
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +16,7 @@ import kotlinx.coroutines.withContext
 
 class ReportAdapter (
     private var suspected: List<com.jnu.database.model.ReportEntity>,
-    private val kakaoLocalRepository: KakaoLocalRepository,
+    private val kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository,
     private val onItemClicked: (com.jnu.database.model.ReportEntity) -> Unit
 ): RecyclerView.Adapter<ReportAdapter.SuspectedViewHolder>(){
     class SuspectedViewHolder(val binding: ListMissingPetBinding):

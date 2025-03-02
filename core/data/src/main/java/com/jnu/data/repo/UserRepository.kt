@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.repository
+package com.jnu.data.repo
 
 import androidx.core.net.toUri
 import com.jnu.network.datasource.UserSource

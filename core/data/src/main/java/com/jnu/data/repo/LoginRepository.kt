@@ -1,7 +1,7 @@
-package com.jnu.togetherpet.data.repository
+package com.jnu.data.repo
 
 import com.jnu.network.datasource.LoginSource
-import com.jnu.togetherpet.data.datasource.TokenSource
+import com.jnu.network.datasource.TokenSource
 import javax.inject.Inject
 import javax.inject.Singleton
 

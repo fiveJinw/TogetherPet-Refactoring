@@ -1,7 +1,7 @@
-package com.jnu.togetherpet.data.repository
+package com.jnu.data.repo
 
 import android.content.Context
-import com.jnu.togetherpet.data.datasource.TokenSource
+import com.jnu.network.datasource.TokenSource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -3,9 +3,8 @@ package com.jnu.togetherpet.ui.viewmodel.walking
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.repository.UserRepository
-import com.jnu.togetherpet.data.repository.WalkingRepository
-import com.jnu.model.WalkingRecord
+import com.jnu.data.repo.UserRepository
+import com.jnu.data.repo.WalkingRepository
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +22,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WalkingPetRecordViewModel @Inject constructor(
-    private val walkingRepository: WalkingRepository,
-    private val userRepository: UserRepository,
+    private val walkingRepository: com.jnu.data.repo.WalkingRepository,
+    private val userRepository: com.jnu.data.repo.UserRepository,
 ) :
     ViewModel() {
     private val _allDistance = MutableStateFlow<Long>(0)
