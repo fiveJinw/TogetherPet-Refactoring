@@ -8,6 +8,7 @@ import com.jnu.data.repo.WalkingRepository
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -64,6 +65,7 @@ class WalkingPetRecordViewModel @Inject constructor(
 
     private fun setPetName() {
         viewModelScope.launch(Dispatchers.IO) {
+            delay(3000)
             _petName.value = userRepository.getUserData().petName
         }
     }

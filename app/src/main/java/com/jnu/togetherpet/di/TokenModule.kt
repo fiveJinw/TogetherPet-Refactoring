@@ -1,5 +1,6 @@
 package com.jnu.togetherpet.di
 
+import com.jnu.data.repo.TokenRepository
 import com.jnu.network.datasource.TokenSource
 import dagger.Binds
 import dagger.Module
@@ -14,6 +15,6 @@ abstract class TokenModule {
     @Binds
     @Singleton
     abstract fun bindTokenSource(
-        tokenRepository: com.jnu.data.repo.TokenRepository
+        tokenRepository: TokenRepository
     ): TokenSource
 }
