@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.togetherpet.android.application)
+    alias(libs.plugins.togetherpet.android.library)
     alias(libs.plugins.togetherpet.hilt)
 }
 
