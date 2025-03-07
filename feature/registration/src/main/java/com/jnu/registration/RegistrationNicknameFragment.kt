@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.registration
+package com.jnu.registration
 
 import android.content.Intent
 import android.net.Uri
@@ -13,9 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
-import com.jnu.togetherpet.ui.viewmodel.report.RegistrationViewModel
-import com.jnu.togetherpet.ui.activity.dashboard.DashboardActivity
-import com.jnu.togetherpet.databinding.FragmentInfoRegistrationNicknameBinding
+import com.jnu.registration.databinding.FragmentInfoRegistrationNicknameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -118,9 +116,10 @@ class RegistrationNicknameFragment : Fragment() {
 
 
     private fun navigateToHomeActivity() {
-        val intent = Intent(requireActivity(), DashboardActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        //TODO : 실행을 위해 주석처리
+//        val intent = Intent(requireActivity(), DashboardActivity::class.java)
+//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+//        startActivity(intent)
         requireActivity().finish() // 현재 액티비티를 종료하여 뒤로 가기를 막음
     }
 

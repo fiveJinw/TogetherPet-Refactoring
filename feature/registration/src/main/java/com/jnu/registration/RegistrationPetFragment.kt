@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.registration
+package com.jnu.registration
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.ui.viewmodel.report.RegistrationViewModel
-import com.jnu.togetherpet.databinding.FragmentInfoRegistrationPetBinding
+import com.jnu.registration.databinding.FragmentInfoRegistrationPetBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

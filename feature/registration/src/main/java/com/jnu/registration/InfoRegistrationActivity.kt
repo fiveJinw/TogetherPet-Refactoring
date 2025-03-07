@@ -1,10 +1,9 @@
-package com.jnu.togetherpet.ui.fragment.walking
+package com.jnu.registration
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import com.jnu.togetherpet.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

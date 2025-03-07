@@ -43,4 +43,11 @@ gradlePlugin{
             implementationClass = "AndroidRoomConventionPlugin"
         }
     }
+
+    plugins{
+        register("kakao"){
+            id = "togetherpet.kakao"
+            implementationClass = "KakaoConventionPlugin"
+        }
+    }
 }

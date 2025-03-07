@@ -6,9 +6,8 @@ import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-// TODO : 실행을 위해
-//import com.jnu.togetherpet.ui.fragment.walking.InfoRegistrationActivity
 import com.jnu.login.databinding.ActivityLoginBinding
+import com.jnu.registration.InfoRegistrationActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -43,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                         "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
 
                 viewModel.login(user.kakaoAccount?.email.toString())
-//                val intent = Intent(this@LoginActivity, InfoRegistrationActivity::class.java)
+                val intent = Intent(this@LoginActivity, InfoRegistrationActivity::class.java)
                 startActivity(intent)
             }
         }

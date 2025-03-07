@@ -16,8 +16,8 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.launchFragmentInHiltContainer
-import com.jnu.togetherpet.ui.fragment.registration.RegistrationImageFragment
-import com.jnu.togetherpet.ui.viewmodel.report.RegistrationViewModel
+import com.jnu.registration.RegistrationImageFragment
+import com.jnu.registration.RegistrationViewModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
@@ -49,7 +49,7 @@ class RegistrationImageFragmentTest {
             ApplicationProvider.getApplicationContext()
         )
 
-        launchFragmentInHiltContainer<RegistrationImageFragment> {
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationImageFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             navController.setCurrentDestination(R.id.registrationImageFragment)
             Navigation.setViewNavController(requireView(), navController)
@@ -60,7 +60,7 @@ class RegistrationImageFragmentTest {
 
     @Test
     fun `testWhenClickImageChoiceButtonNavigateToImageFolder`() {
-        launchFragmentInHiltContainer<RegistrationImageFragment> {}
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationImageFragment> {}
         Thread.sleep(1000)
         onView(withId(R.id.image_input_button)).perform(click())
         intended(hasAction(Intent.ACTION_GET_CONTENT))
@@ -73,13 +73,13 @@ class RegistrationImageFragmentTest {
         )
 
 
-        launchFragmentInHiltContainer<RegistrationImageFragment> {
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationImageFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             navController.setCurrentDestination(R.id.registrationImageFragment)
             Navigation.setViewNavController(requireView(), navController)
             requireView().findViewById<ImageView>(R.id.animal_image)
                 .setImageResource(R.drawable.emergency_icon)
-            val viewModel: RegistrationViewModel by activityViewModels()
+            val viewModel: com.jnu.registration.RegistrationViewModel by activityViewModels()
 
             viewModel.setPetImage(Uri.parse("android.resource://${context?.packageName}/${R.drawable.emergency_icon}"))
         }

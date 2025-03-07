@@ -8,7 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.action.ViewActions.*
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.launchFragmentInHiltContainer
-import com.jnu.togetherpet.ui.fragment.registration.RegistrationResidenceFragment
+import com.jnu.registration.RegistrationResidenceFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -33,7 +33,7 @@ class RegistratinoResidenceFragmentTest {
             ApplicationProvider.getApplicationContext()
         )
 
-        launchFragmentInHiltContainer<RegistrationResidenceFragment> {
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationResidenceFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             navController.setCurrentDestination(R.id.registrationResidenceFragment)
             Navigation.setViewNavController(requireView(), navController)

@@ -1,10 +1,9 @@
-package com.jnu.togetherpet.ui.viewmodel.report
+package com.jnu.registration
 
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.repository.DataStoreRepository
 import com.jnu.data.repo.RegisterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

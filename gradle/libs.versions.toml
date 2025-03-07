@@ -25,6 +25,8 @@ material = "1.12.0"
 jetbrainsKotlinJvm = "1.9.0"
 desugar_jdk_libs = "2.0.4"
 hilt = "2.51.1"
+kakaoMap = "2.11.9"
+kakaoSdk = "2.20.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,6 +54,8 @@ hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-comp
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+kakao-map-open = { group = "com.kakao.maps.open", name = "android", version.ref = "kakaoMap" }
+kakao-sdk = { group = "com.kakao.sdk", name = "v2-user", version.ref = "kakaoSdk" }
 
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -71,8 +75,9 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 
 # Custom Convention Plugin
-togetherpet-android-application = { id = "togetherpet.android.application", version = "unspecified"}
+togetherpet-android-application = { id = "togetherpet.android.application", version = "unspecified" }
 togetherpet-android-library = { id = "togetherpet.android.library", version = "unspecified" }
 togetherpet-hilt = { id = "togetherpet.hilt", version = "unspecified" }
 togetherpet-android-room = { id = "togetherpet.android.room", version = "unspecified" }
+togetherpet-kakao = { id = "togetherpet.kakao", version = "unspecified" }
 

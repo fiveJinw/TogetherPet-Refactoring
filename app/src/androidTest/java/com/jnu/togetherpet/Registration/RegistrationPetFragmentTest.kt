@@ -10,8 +10,8 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.launchFragmentInHiltContainer
-import com.jnu.togetherpet.ui.fragment.registration.RegistrationPetFragment
-import com.jnu.togetherpet.ui.viewmodel.report.RegistrationViewModel
+import com.jnu.registration.RegistrationPetFragment
+import com.jnu.registration.RegistrationViewModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.Job
@@ -37,7 +37,7 @@ class RegistrationPetFragmentTest {
             ApplicationProvider.getApplicationContext()
         )
 
-        launchFragmentInHiltContainer<RegistrationPetFragment> {
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationPetFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             navController.setCurrentDestination(R.id.registrationPetFragment)
             Navigation.setViewNavController(requireView(), navController)
@@ -52,7 +52,7 @@ class RegistrationPetFragmentTest {
             ApplicationProvider.getApplicationContext()
         )
 
-        launchFragmentInHiltContainer<RegistrationPetFragment> {
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationPetFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             navController.setCurrentDestination(R.id.registrationPetFragment)
             Navigation.setViewNavController(requireView(), navController)
@@ -85,11 +85,11 @@ class RegistrationPetFragmentTest {
         var jobThree : Job? = null
         var jobFour : Job? = null
 
-        launchFragmentInHiltContainer<RegistrationPetFragment> {
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationPetFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             navController.setCurrentDestination(R.id.registrationPetFragment)
             Navigation.setViewNavController(requireView(), navController)
-            val viewModel: RegistrationViewModel by activityViewModels()
+            val viewModel: com.jnu.registration.RegistrationViewModel by activityViewModels()
 
                 job = lifecycleScope.launch {
                     viewModel.petName.collect { value ->
