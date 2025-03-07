@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.jnu.togetherpet.data.repository.DataStoreRepository
+import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.databinding.DateTimePickerBinding
 import com.jnu.togetherpet.databinding.ReportMyPetMissingFragmentBinding
@@ -34,7 +34,7 @@ class MyPetReportFragment : Fragment() {
 
     private val reportMyPetViewModel: ReportMyPetViewModel by viewModels()
     @Inject
-    lateinit var dataStoreRepository: DataStoreRepository
+    lateinit var dataStoreRepository: com.jnu.datastore.DataStoreRepository
 
     //가입시 사용한 이미지를 사용하도록 설계 되어 있어서 우선 주석 처리 함
     //private lateinit var resultLauncher: ActivityResultLauncher<Intent>

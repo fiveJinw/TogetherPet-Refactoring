@@ -23,10 +23,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.jnu.togetherpet.data.repository.DataStoreRepository
+import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.adapter.SearchingBtnListAdapter
-import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.FragmentSearchingPetBinding
 import com.jnu.togetherpet.extensions.toBitmap
 import com.jnu.togetherpet.ui.adapter.MissingAdapter
@@ -55,7 +54,7 @@ import javax.inject.Inject
 class SearchingPetFragment : Fragment() {
     //내 반려 동물 missing 여부 저장
     @Inject
-    lateinit var dataStoreRepository: DataStoreRepository
+    lateinit var dataStoreRepository: com.jnu.datastore.DataStoreRepository
 
     //위도, 경도 -> 주소
     @Inject

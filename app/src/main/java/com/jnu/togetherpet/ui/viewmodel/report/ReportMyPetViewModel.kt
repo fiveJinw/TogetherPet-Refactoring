@@ -2,8 +2,7 @@ package com.jnu.togetherpet.ui.viewmodel.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.repository.DataStoreRepository
-import com.jnu.data.repo.MissingRepository
+import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportMyPetViewModel @Inject constructor(
     private val missingRepository: com.jnu.data.repo.MissingRepository,
-    private val dataStoreRepository: DataStoreRepository
+    private val dataStoreRepository: com.jnu.datastore.DataStoreRepository
 ) : ViewModel() {
     private val _reportStatus = MutableStateFlow(ReportStatus.IDLE)
     val reportStatus: StateFlow<ReportStatus> = _reportStatus

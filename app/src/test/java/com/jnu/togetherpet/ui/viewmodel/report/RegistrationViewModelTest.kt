@@ -3,7 +3,7 @@ package com.jnu.togetherpet.ui.viewmodel.report
 import android.net.Uri
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.togetherpet.data.repository.DataStoreRepository
+import com.jnu.datastore.DataStoreRepository
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
@@ -25,7 +25,7 @@ class RegistrationViewModelTest {
 
     private lateinit var viewModel: com.jnu.registration.RegistrationViewModel
     private val mockRegisterRepository = mockk<com.jnu.data.repo.RegisterRepository>(relaxed = true)
-    private val mockDataStoreRepository = mockk<DataStoreRepository>(relaxed = true)
+    private val mockDataStoreRepository = mockk<com.jnu.datastore.DataStoreRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 
     @Before

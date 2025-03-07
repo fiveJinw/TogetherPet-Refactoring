@@ -18,9 +18,8 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.jnu.togetherpet.data.repository.DataStoreRepository
+import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.R
-import com.jnu.data.repo.KakaoLocalRepository
 import com.jnu.togetherpet.databinding.FragmentHomeBinding
 import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetRecordViewModel
 import com.jnu.togetherpet.ui.adapter.MissingAdapter
@@ -41,7 +40,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var dataStoreRepository: DataStoreRepository
+    lateinit var dataStoreRepository: com.jnu.datastore.DataStoreRepository
 
     @Inject
     lateinit var kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository

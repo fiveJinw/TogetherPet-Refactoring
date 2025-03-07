@@ -8,14 +8,12 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.data.repo.UserRepository
-import com.jnu.data.repo.WalkingRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.Priority
-import com.jnu.togetherpet.data.repository.DataStoreRepository
+import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.ui.fragment.common.LocationService
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,7 +38,7 @@ class WalkingPetViewModel @Inject constructor(
     private val fusedLocationProviderClient: FusedLocationProviderClient,
     private val walkingRepository: com.jnu.data.repo.WalkingRepository,
     private val userRepository: com.jnu.data.repo.UserRepository,
-    private val dataStoreRepository: DataStoreRepository
+    private val dataStoreRepository: com.jnu.datastore.DataStoreRepository
 ) :
     ViewModel() {
 
