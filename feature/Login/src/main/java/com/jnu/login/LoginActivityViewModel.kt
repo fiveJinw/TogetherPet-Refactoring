@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginActivityViewModel @Inject constructor(
-    private val loginRepository: com.jnu.data.repo.LoginRepository
+    private val loginRepository: LoginRepository
 ) : ViewModel() {
     fun login(email: String) {
         viewModelScope.launch {
