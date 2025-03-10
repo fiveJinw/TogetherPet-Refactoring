@@ -86,6 +86,7 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.feature.login)
     implementation(projects.core.datastore)
+    implementation(projects.core.ui)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test:rules:1.6.1")
