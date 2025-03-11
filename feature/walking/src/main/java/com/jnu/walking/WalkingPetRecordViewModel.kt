@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.viewmodel.walking
+package com.jnu.walking
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

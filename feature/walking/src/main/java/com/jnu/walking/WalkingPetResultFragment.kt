@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.walking
+package com.jnu.walking
 
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
@@ -12,10 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.FragmentWalkingPetResultBinding
-import com.jnu.togetherpet.extensions.drawLine
-import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetViewModel
+import com.jnu.walking.databinding.FragmentWalkingPetResultBinding
+import com.jnu.walking.extensions.drawLine
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng
@@ -85,7 +83,7 @@ class WalkingPetResultFragment : Fragment() {
     private fun createLabel(pos : LatLng){
         val labelManager = kakaoMap.labelManager
         val style = labelManager
-            ?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.seraching_own_location).setAnchorPoint(0.5f, 1f))) // Todo : 변경 필요
+            ?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.searching_own_location).setAnchorPoint(0.5f, 1f))) // Todo : 변경 필요
         var label = kakaoMap.getLabelManager()?.getLayer()?.addLabel(LabelOptions.from("center",pos).setStyles(style).setRank(1))
     }
 

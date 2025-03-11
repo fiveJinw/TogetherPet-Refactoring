@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.common
+package com.jnu.walking
 
 import android.annotation.SuppressLint
 import android.app.Notification

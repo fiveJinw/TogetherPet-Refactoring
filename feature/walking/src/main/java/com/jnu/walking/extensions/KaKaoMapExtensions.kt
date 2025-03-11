@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.extensions
+package com.jnu.walking.extensions
 
 import android.graphics.Color
 import com.kakao.vectormap.KakaoMap

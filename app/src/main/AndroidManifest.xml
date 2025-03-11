@@ -62,7 +62,7 @@
         </activity>
 
         <service
-            android:name=".ui.fragment.common.LocationService"
+            android:name="com.jnu.walking.LocationService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="location" />

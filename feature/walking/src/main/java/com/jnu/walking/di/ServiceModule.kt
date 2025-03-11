@@ -1,7 +1,7 @@
-package com.jnu.togetherpet.di
+package com.jnu.walking.di
 
 import android.content.Context
-import com.jnu.togetherpet.ui.fragment.common.LocationService
+import com.jnu.walking.LocationService
 import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class ServiceModule {
     @Provides
     @Singleton
-    fun provideLocationService() = LocationService()
+    fun provideLocationService() = com.jnu.walking.LocationService()
 
     @Singleton
     @Provides

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.adapter
+package com.jnu.walking.adapter
 
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jnu.togetherpet.databinding.WalkingRecordItemBinding
-import com.jnu.togetherpet.extensions.drawLine
-import com.jnu.togetherpet.extensions.formattingLocalDateTimeToString
 import com.jnu.model.WalkingRecord
+import com.jnu.walking.databinding.WalkingRecordItemBinding
+import com.jnu.walking.extensions.drawLine
+import com.jnu.walking.extensions.formattingLocalDateTimeToString
 import com.kakao.vectormap.GestureType
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -21,7 +21,7 @@ import java.util.Locale
 
 class WalkingRecordAdapter(
     private val listener: OnClickWalkingRecordListener
-) : ListAdapter<com.jnu.model.WalkingRecord, WalkingRecordViewHolder>(WalkingRecordDiffCallBack()) {
+) : ListAdapter<WalkingRecord, WalkingRecordViewHolder>(WalkingRecordDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WalkingRecordViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = WalkingRecordItemBinding.inflate(inflater, parent, false)

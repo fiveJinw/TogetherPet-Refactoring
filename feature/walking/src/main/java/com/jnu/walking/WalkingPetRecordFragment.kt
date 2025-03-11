@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.walking
+package com.jnu.walking
 
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
@@ -14,12 +14,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jnu.togetherpet.ui.adapter.CalendarViewPagerAdapter
-import com.jnu.togetherpet.ui.adapter.OnClickWalkingRecordListener
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.ui.adapter.WalkingRecordAdapter
-import com.jnu.togetherpet.databinding.FragmentWalkingPetRecordBinding
-import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetRecordViewModel
+import com.jnu.walking.adapter.CalendarViewPagerAdapter
+import com.jnu.walking.adapter.OnClickWalkingRecordListener
+import com.jnu.walking.adapter.WalkingRecordAdapter
+import com.jnu.walking.databinding.FragmentWalkingPetRecordBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -125,18 +123,20 @@ class WalkingPetRecordFragment : Fragment(), OnClickWalkingRecordListener {
     }
 
     fun navigateToWalkingPage() {
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.home_frameLayout, WalkingPetFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //Todo: 실행을 위한 주석처리
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        transaction.replace(R.id.home_frameLayout, WalkingPetFragment())
+//        transaction.addToBackStack(null)
+//        transaction.commit()
     }
 
     override fun navigateToDetailRecordPage(position: Int) {
         sharedViewModel.getSelectedDetailRecord(position)
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.home_frameLayout, WalkingPetRecordDetailFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //Todo: 실행을 위한 주석처리
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        transaction.replace(R.id.home_frameLayout, WalkingPetRecordDetailFragment())
+//        transaction.addToBackStack(null)
+//        transaction.commit()
     }
 
 

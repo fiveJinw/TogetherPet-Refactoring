@@ -21,13 +21,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.databinding.FragmentHomeBinding
-import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetRecordViewModel
 import com.jnu.togetherpet.ui.adapter.MissingAdapter
 import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.jnu.togetherpet.ui.fragment.searching.SearchingPetFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.jnu.togetherpet.utils.DpUtils.dpToPx
+import com.jnu.walking.WalkingPetRecordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

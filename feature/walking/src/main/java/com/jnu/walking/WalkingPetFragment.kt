@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.walking
+package com.jnu.walking
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -22,15 +22,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.CustomDialogBinding
-import com.jnu.togetherpet.databinding.FragmentWalkingPetBinding
-import com.jnu.togetherpet.extensions.drawLine
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.jnu.togetherpet.extensions.removeLine
-import com.jnu.togetherpet.ui.viewmodel.walking.WalkingPetViewModel
+import com.jnu.walking.databinding.CustomDialogBinding
+import com.jnu.walking.databinding.FragmentWalkingPetBinding
+import com.jnu.walking.extensions.drawLine
+import com.jnu.walking.extensions.removeLine
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng
@@ -93,7 +91,11 @@ class WalkingPetFragment : Fragment() {
                     }
                 }
                 permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-
+                    fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).addOnSuccessListener {
+                            location ->
+                        val latLng = LatLng.from(location.latitude, location.longitude)
+                        kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng))
+                    }
                 } else -> {
                 Toast.makeText(requireContext(), "권한 거절시 산책 기능이 제한될 수 있습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -297,17 +299,19 @@ class WalkingPetFragment : Fragment() {
     }
 
     fun navigateToResultPage(){
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.home_frameLayout, WalkingPetResultFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //Todo : 실행을 위한 주석처리
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        transaction.replace(R.id.home_frameLayout, WalkingPetResultFragment())
+//        transaction.addToBackStack(null)
+//        transaction.commit()
     }
 
     private fun navigateToRecordPage(){
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.home_frameLayout, WalkingPetRecordFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //Todo : 실행을 위한 주석처리
+//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//        transaction.replace(R.id.home_frameLayout, WalkingPetRecordFragment())
+//        transaction.addToBackStack(null)
+//        transaction.commit()
     }
 
 

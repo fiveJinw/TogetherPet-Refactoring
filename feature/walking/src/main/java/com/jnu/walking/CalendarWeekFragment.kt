@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.walking
+package com.jnu.walking
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import com.jnu.togetherpet.databinding.FragmentCalendarWeekBinding
+import com.jnu.walking.databinding.FragmentCalendarWeekBinding
 import java.time.LocalDate
 
 class CalendarWeekFragment : Fragment() {

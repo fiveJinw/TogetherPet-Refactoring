@@ -8,7 +8,7 @@ import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.fragment.community.CommunityFragment
 import com.jnu.togetherpet.ui.fragment.diary.DiaryFragment
 import com.jnu.togetherpet.ui.fragment.home.HomeFragment
-import com.jnu.togetherpet.ui.fragment.walking.WalkingPetFragment
+import com.jnu.walking.WalkingPetFragment
 import com.jnu.togetherpet.ui.fragment.searching.SearchingPetFragment
 
 class DashboardViewModel : ViewModel() {
@@ -21,7 +21,7 @@ class DashboardViewModel : ViewModel() {
             R.id.bottom_community -> CommunityFragment()
             R.id.bottom_searching -> SearchingPetFragment()
             R.id.bottom_diary -> DiaryFragment()
-            R.id.bottom_walking -> WalkingPetFragment()
+            R.id.bottom_walking -> com.jnu.walking.WalkingPetFragment()
             else -> HomeFragment()
         }
         _selectedFragment.value = fragment

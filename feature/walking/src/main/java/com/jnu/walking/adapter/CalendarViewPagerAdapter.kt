@@ -1,10 +1,10 @@
-package com.jnu.togetherpet.ui.adapter
+package com.jnu.walking.adapter
 
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jnu.togetherpet.ui.fragment.walking.CalendarWeekFragment
+import com.jnu.walking.CalendarWeekFragment
 
 class CalendarViewPagerAdapter(
     fm: FragmentActivity
