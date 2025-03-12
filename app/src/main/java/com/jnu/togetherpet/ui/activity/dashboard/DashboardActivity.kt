@@ -6,10 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.ActivityDashboardBinding
 import com.jnu.togetherpet.ui.fragment.home.HomeFragment
 import com.jnu.togetherpet.ui.fragment.common.CustomToast
 import com.jnu.togetherpet.ui.viewmodel.DashboardViewModel
+import com.jnu.ui.databinding.ActivityDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +44,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.home_frameLayout, fragment)
+            .replace(com.jnu.ui.R.id.home_frameLayout, fragment)
             .commit()
     }
 

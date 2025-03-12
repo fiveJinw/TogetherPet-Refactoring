@@ -4,6 +4,9 @@ plugins {
 
 android {
     namespace = "com.jnu.ui"
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies{

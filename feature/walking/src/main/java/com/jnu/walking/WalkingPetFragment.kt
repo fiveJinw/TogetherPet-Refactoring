@@ -299,19 +299,17 @@ class WalkingPetFragment : Fragment() {
     }
 
     fun navigateToResultPage(){
-        //Todo : 실행을 위한 주석처리
-//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//        transaction.replace(R.id.home_frameLayout, WalkingPetResultFragment())
-//        transaction.addToBackStack(null)
-//        transaction.commit()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(com.jnu.ui.R.id.home_frameLayout, WalkingPetResultFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     private fun navigateToRecordPage(){
-        //Todo : 실행을 위한 주석처리
-//        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//        transaction.replace(R.id.home_frameLayout, WalkingPetRecordFragment())
-//        transaction.addToBackStack(null)
-//        transaction.commit()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(com.jnu.ui.R.id.home_frameLayout, WalkingPetRecordFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 

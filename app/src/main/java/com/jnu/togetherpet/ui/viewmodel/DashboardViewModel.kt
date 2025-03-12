@@ -17,11 +17,11 @@ class DashboardViewModel : ViewModel() {
 
     fun selectFragmentToShow(itemId: Int) {
         val fragment = when (itemId) {
-            R.id.bottom_home -> HomeFragment()
-            R.id.bottom_community -> CommunityFragment()
-            R.id.bottom_searching -> SearchingPetFragment()
-            R.id.bottom_diary -> DiaryFragment()
-            R.id.bottom_walking -> com.jnu.walking.WalkingPetFragment()
+            com.jnu.ui.R.id.bottom_home -> HomeFragment()
+            com.jnu.ui.R.id.bottom_community -> CommunityFragment()
+            com.jnu.ui.R.id.bottom_searching -> SearchingPetFragment()
+            com.jnu.ui.R.id.bottom_diary -> DiaryFragment()
+            com.jnu.ui.R.id.bottom_walking -> com.jnu.walking.WalkingPetFragment()
             else -> HomeFragment()
         }
         _selectedFragment.value = fragment
