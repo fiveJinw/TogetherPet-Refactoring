@@ -12,9 +12,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.jnu.common.extensions.formattingLocalDateTimeToString
 import com.jnu.walking.databinding.FragmentWalkingPetResultBinding
 import com.jnu.walking.extensions.drawLine
-import com.jnu.walking.extensions.formattingLocalDateTimeToString
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng

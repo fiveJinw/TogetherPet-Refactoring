@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jnu.model.WalkingRecord
 import com.jnu.walking.databinding.WalkingRecordItemBinding
 import com.jnu.walking.extensions.drawLine
-import com.jnu.walking.extensions.formattingLocalDateTimeToString
+import com.jnu.common.extensions.formattingLocalDateTimeToString
 import com.kakao.vectormap.GestureType
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
