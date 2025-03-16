@@ -26,6 +26,7 @@ import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.jnu.togetherpet.ui.fragment.searching.SearchingPetFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.jnu.domain.GetTodayWalkingDataUseCase
 import com.jnu.togetherpet.utils.DpUtils.dpToPx
 import com.jnu.walking.WalkingPetRecordViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +47,8 @@ class HomeFragment : Fragment() {
     lateinit var kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository
 
     //산책 데이터
-    private val walkingPetRecordViewModel: WalkingPetRecordViewModel by viewModels()
+    @Inject
+    lateinit var getTodayWalkingDataUseCase: GetTodayWalkingDataUseCase
 
     //실종 제보 데이터
     private val reportDataViewModel: ReportDataViewModel by viewModels()
@@ -161,14 +163,12 @@ class HomeFragment : Fragment() {
 
         //---산책 정보 띄우기---
         viewLifecycleOwner.lifecycleScope.launch {
-            walkingPetRecordViewModel.walkingData.collectLatest { data ->
+            getTodayWalkingDataUseCase().let{ data ->
                 binding.homeTotalCount.text = "${data.todayWalkCount}"
                 binding.homeTotalDistance.text = "${data.distance}"
                 binding.homeTotalTime.text = data.time
             }
         }
-
-        walkingPetRecordViewModel.getRecordToLocal(LocalDate.now())
 
         //[추가할 부분] 평균 데이터 받아서 사용 (api 구현 여부 확인 필요)
         val avgCount = "-"
