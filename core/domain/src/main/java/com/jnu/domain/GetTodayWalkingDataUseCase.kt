@@ -10,7 +10,7 @@ import java.util.TimeZone
 import javax.inject.Inject
 
 class GetTodayWalkingDataUseCase @Inject constructor(private val walkingRepository: WalkingRepository) {
-    operator fun invoke() : WalkingData {
+    suspend operator fun invoke() : WalkingData {
         val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         var allDistance : Long = 0L
         var allTime : Long = 0L

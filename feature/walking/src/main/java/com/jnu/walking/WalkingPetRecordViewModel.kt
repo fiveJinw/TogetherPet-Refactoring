@@ -121,7 +121,7 @@ class WalkingPetRecordViewModel @Inject constructor(
     }
 
     private fun getWalkingData() {
-        updateTodayWalkCount()
+        gitupdateTodayWalkCount()
         val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("UTC")
         _walkingData.value = WalkingData(
