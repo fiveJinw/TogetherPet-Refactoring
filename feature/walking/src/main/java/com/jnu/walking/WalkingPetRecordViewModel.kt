@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jnu.data.repo.UserRepository
 import com.jnu.data.repo.WalkingRepository
+import com.jnu.model.WalkingData
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -121,7 +122,7 @@ class WalkingPetRecordViewModel @Inject constructor(
     }
 
     private fun getWalkingData() {
-        gitupdateTodayWalkCount()
+        updateTodayWalkCount()
         val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("UTC")
         _walkingData.value = WalkingData(
@@ -142,9 +143,3 @@ class WalkingPetRecordViewModel @Inject constructor(
         walkCount = count
     }
 }
-
-data class WalkingData(
-    val distance: Long,
-    val time: String,
-    val todayWalkCount: Int
-)
