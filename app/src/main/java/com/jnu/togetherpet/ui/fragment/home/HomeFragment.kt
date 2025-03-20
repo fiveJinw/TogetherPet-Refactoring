@@ -18,21 +18,18 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.databinding.FragmentHomeBinding
-import com.jnu.togetherpet.ui.adapter.MissingAdapter
+import com.jnu.ui.MissingAdapter
 import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.jnu.togetherpet.ui.fragment.searching.SearchingPetFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.jnu.domain.GetTodayWalkingDataUseCase
 import com.jnu.togetherpet.utils.DpUtils.dpToPx
-import com.jnu.walking.WalkingPetRecordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 import javax.inject.Inject
 
 @AndroidEntryPoint

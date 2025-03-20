@@ -23,12 +23,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.jnu.datastore.DataStoreRepository
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.adapter.SearchingBtnListAdapter
 import com.jnu.togetherpet.databinding.FragmentSearchingPetBinding
 import com.jnu.togetherpet.extensions.toBitmap
-import com.jnu.togetherpet.ui.adapter.MissingAdapter
+import com.jnu.ui.MissingAdapter
 import com.jnu.togetherpet.ui.adapter.ReportAdapter
 import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.google.android.gms.location.FusedLocationProviderClient

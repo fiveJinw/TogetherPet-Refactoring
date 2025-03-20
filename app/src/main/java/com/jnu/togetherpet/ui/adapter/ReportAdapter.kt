@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jnu.data.repo.KakaoLocalRepository
-import com.jnu.togetherpet.databinding.ListMissingPetBinding
+import com.jnu.ui.databinding.ListMissingPetBinding
 import com.kakao.vectormap.LatLng
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

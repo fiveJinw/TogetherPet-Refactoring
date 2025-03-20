@@ -19,7 +19,6 @@ class GetTodayWalkingDataUseCase @Inject constructor(private val walkingReposito
         dateFormat.timeZone = TimeZone.getTimeZone("UTC")
 
         val walkingRecordList = walkingRepository.getWalkingDataWithDateFromLocal(LocalDate.now())
-        val today = LocalDate.now()
         walkingRecordList.forEach {
             allDistance += it.distance
             allTime += it.time
