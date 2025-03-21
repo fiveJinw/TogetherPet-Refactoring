@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.searching
+package com.jnu.searching
 
 import android.os.Bundle
 import android.util.Log

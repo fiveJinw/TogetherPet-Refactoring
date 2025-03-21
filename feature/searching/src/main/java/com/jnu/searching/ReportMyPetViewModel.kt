@@ -1,9 +1,8 @@
-package com.jnu.togetherpet.ui.viewmodel.report
+package com.jnu.searching
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.datastore.DataStoreRepository
-import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
+import com.jnu.searching.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,8 +17,8 @@ class ReportMyPetViewModel @Inject constructor(
     private val missingRepository: com.jnu.data.repo.MissingRepository,
     private val dataStoreRepository: com.jnu.datastore.DataStoreRepository
 ) : ViewModel() {
-    private val _reportStatus = MutableStateFlow(ReportStatus.IDLE)
-    val reportStatus: StateFlow<ReportStatus> = _reportStatus
+    private val _reportStatus = MutableStateFlow(com.jnu.searching.enums.ReportStatus.IDLE)
+    val reportStatus: StateFlow<com.jnu.searching.enums.ReportStatus> = _reportStatus
 
     private val _petName = MutableStateFlow("")
     private val _birthMonth = MutableStateFlow(0L)
@@ -66,7 +65,7 @@ class ReportMyPetViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 missingRepository.registerMissing(missingRegisterRequestDTO)
-                _reportStatus.value = ReportStatus.SUCCESS // 성공 시
+                _reportStatus.value = com.jnu.searching.enums.ReportStatus.SUCCESS // 성공 시
             } catch (e: Exception) {
                 if(e.hashCode() == -268512456){
                     val missingDTO = com.jnu.network.model.MissingRegisterRequestDTO(
@@ -81,12 +80,12 @@ class ReportMyPetViewModel @Inject constructor(
                         isNeutering = _isNeutering.value
                     )
                     missingRepository.registerMissing(missingDTO)
-                    _reportStatus.value = ReportStatus.SUCCESS
+                    _reportStatus.value = com.jnu.searching.enums.ReportStatus.SUCCESS
                 }
-                else _reportStatus.value = ReportStatus.ERROR // 실패 시
+                else _reportStatus.value = com.jnu.searching.enums.ReportStatus.ERROR // 실패 시
             } finally {
                 // 초기화 또는 다음 요청을 위해 IDLE 상태로 되돌림
-                _reportStatus.value = ReportStatus.IDLE
+                _reportStatus.value = com.jnu.searching.enums.ReportStatus.IDLE
             }
         }
     }

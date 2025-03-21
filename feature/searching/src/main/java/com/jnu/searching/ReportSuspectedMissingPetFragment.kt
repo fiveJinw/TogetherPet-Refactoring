@@ -1,43 +1,42 @@
-package com.jnu.togetherpet.ui.fragment.searching
+package com.jnu.searching
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.jnu.datastore.DataStoreRepository
-import com.jnu.togetherpet.R
+import com.bumptech.glide.Glide
 import com.jnu.togetherpet.databinding.DateTimePickerBinding
-import com.jnu.togetherpet.databinding.ReportMyPetMissingFragmentBinding
+import com.jnu.togetherpet.databinding.ReportSuspectedMissingPetFragmentBinding
 import com.jnu.togetherpet.ui.fragment.common.CustomToast
-import com.jnu.togetherpet.ui.viewmodel.report.ReportMyPetViewModel
+import com.jnu.togetherpet.ui.viewmodel.report.ReportSuspectedViewModel
 import com.jnu.togetherpet.ui.fragment.common.LocationSelectFragment
-import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
+import com.jnu.ui.enums.ReportStatus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyPetReportFragment : Fragment() {
-    private var _binding: ReportMyPetMissingFragmentBinding? = null
+class ReportSuspectedMissingPetFragment : Fragment() {
+    private var _binding: ReportSuspectedMissingPetFragmentBinding? = null
     private val binding get() = _binding!!
+    private val reportSuspectedViewModel: ReportSuspectedViewModel by viewModels()
 
-    private val reportMyPetViewModel: ReportMyPetViewModel by viewModels()
-    @Inject
-    lateinit var dataStoreRepository: com.jnu.datastore.DataStoreRepository
-
-    //가입시 사용한 이미지를 사용하도록 설계 되어 있어서 우선 주석 처리 함
-    //private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent> //선택한 이미지 화면에 띄우기
 
     private var selectedDateTime: String = "1999년 1월 1일 10:00"
     private var latitude: Double = 37.0
@@ -49,7 +48,7 @@ class MyPetReportFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = ReportMyPetMissingFragmentBinding.inflate(inflater, container, false)
+        _binding = ReportSuspectedMissingPetFragmentBinding.inflate(inflater, container, false)
 
         //목격 시간 선택
         binding.reportMissingTime.setOnClickListener {
@@ -128,9 +127,27 @@ class MyPetReportFragment : Fragment() {
             dialog.dismiss()
         }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // resultLauncher 초기화
+        resultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.let { uri ->
+                    Glide.with(this)
+                        .load(uri)
+                        .into(binding.reportMissingImg)
+                    imgUri = uri
+                }
+            }
+        }
+
+        //이미지 업로드
+        binding.imgUploadBtn.setOnClickListener {
+            setImage()
+        }
 
         // 제보할 데이터 전달 받기
         parentFragmentManager.setFragmentResultListener("locationRequestKey", this) { _, bundle ->
@@ -160,37 +177,61 @@ class MyPetReportFragment : Fragment() {
 
     }
 
+    private fun setImage() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+        }
+        resultLauncher.launch(intent)
+    }
+
     private fun sendReport() {
         val color = binding.reportMissingColor.text.toString()
         val gender = binding.reportMissingGender.text.toString()
         val species = binding.reportMissingSpecies.text.toString()
         val info = binding.reportMissingReportBtn.text.toString()
+        val absolutePath = imgUri
 
-        reportMyPetViewModel.reportMyPet(
-            color = color,
-            gender = gender,
-            breed = species,
-            description = info,
-            foundLongitude = longitude,
-            foundLatitude = latitude,
-            foundDate = selectedDateTime,
-        )
+        Log.d("sendReport", "Absolute Path: $absolutePath")
+
+        if (absolutePath != null) {
+            val file = getFileFromUri(imgUri)
+            val fileList = listOf(file)
+
+            Log.d("sendReport", "File: $file")
+            Log.d("sendReport", "File List: $fileList")
+
+            if (file.exists() && file.length() > 0) {
+                Log.d("sendReport", "File 정상: ${file.absolutePath}")
+
+                reportSuspectedViewModel.reportSuspected(
+                    color = color,
+                    gender = gender,
+                    breed = species,
+                    description = info,
+                    foundLongitude = longitude,
+                    foundLatitude = latitude,
+                    foundDate = selectedDateTime,
+                    file = fileList
+                )
+            } else {
+                Log.e("sendReport", "File 에러")
+            }
+        }
     }
 
     private fun sendCheck() {
         viewLifecycleOwner.lifecycleScope.launch {
-            reportMyPetViewModel.reportStatus.collect { status ->
+            reportSuspectedViewModel.reportStatus.collect { status ->
                 when (status) {
-                    ReportStatus.SUCCESS -> {
+                    com.jnu.ui.enums.ReportStatus.SUCCESS -> {
                         context?.let {
-                            val messageS = requireContext().getString(R.string.my_pet_report_success)
+                            val messageS = requireContext().getString(R.string.report_success)
                             CustomToast.displayToast(it, messageS)
                         }
-                        dataStoreRepository.saveMissingStatus(true)
                         parentFragmentManager.popBackStack()
                     }
 
-                    ReportStatus.ERROR -> {
+                    com.jnu.ui.enums.ReportStatus.ERROR -> {
                         context?.let {
                             val messageF = requireContext().getString(R.string.fail)
                             CustomToast.displayToast(it, messageF)
@@ -203,6 +244,16 @@ class MyPetReportFragment : Fragment() {
                 }
             }
         }
+    }
+
+    fun getFileFromUri(uri: Uri?): File {
+        val contentResolver = requireContext().contentResolver
+        val inputStream = uri?.let { contentResolver.openInputStream(it) } ?: return File("null")
+        val file = File(requireContext().cacheDir, "temp_image.jpg")
+        file.outputStream().use { output ->
+            inputStream.copyTo(output)
+        }
+        return file
     }
 
     override fun onDestroyView() {

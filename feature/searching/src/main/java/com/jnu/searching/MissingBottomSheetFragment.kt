@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.searching
+package com.jnu.searching
 
 import android.os.Bundle
 import android.util.Log
@@ -10,12 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.jnu.togetherpet.R
 import com.jnu.data.repo.KakaoLocalRepository
-import com.jnu.togetherpet.utils.DpUtils
-import com.jnu.togetherpet.databinding.MissingBottomSheetBinding
-import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.jnu.common.DpUtils
+import com.jnu.searching.databinding.MissingBottomSheetBinding
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +24,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MissingBottomSheetFragment : BottomSheetDialogFragment() {
-    private var _binding: MissingBottomSheetBinding? = null
+    private var _binding: MissingBottomSheetBinding ? = null
     private val binding get() = _binding!!
     private val reportDataViewModel: ReportDataViewModel by activityViewModels ()
     @Inject
@@ -126,7 +124,7 @@ class MissingBottomSheetFragment : BottomSheetDialogFragment() {
             val reportFragment = ReportMissingPetFragment.newInstance(missingId)
 
             parentFragmentManager.beginTransaction()
-                .replace(com.jnu.ui.R.id.home_frameLayout, reportFragment)
+                .replace(R.id.home_frameLayout, reportFragment)
                 .addToBackStack(null)
                 .commit()
 

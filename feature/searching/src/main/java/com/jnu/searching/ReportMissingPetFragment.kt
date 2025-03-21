@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.searching
+package com.jnu.searching
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -17,25 +17,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.jnu.togetherpet.R
 import com.jnu.togetherpet.databinding.DateTimePickerBinding
-import com.jnu.togetherpet.databinding.ReportSuspectedMissingPetFragmentBinding
+import com.jnu.togetherpet.databinding.ReportMissingPetFragmentBinding
 import com.jnu.togetherpet.ui.fragment.common.CustomToast
-import com.jnu.togetherpet.ui.viewmodel.report.ReportSuspectedViewModel
+import com.jnu.togetherpet.ui.viewmodel.report.ReportMissingViewModel
 import com.jnu.togetherpet.ui.fragment.common.LocationSelectFragment
-import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
+import com.jnu.ui.enums.ReportStatus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
-class ReportSuspectedMissingPetFragment : Fragment() {
-    private var _binding: ReportSuspectedMissingPetFragmentBinding? = null
-    private val binding get() = _binding!!
-    private val reportSuspectedViewModel: ReportSuspectedViewModel by viewModels()
+class ReportMissingPetFragment : Fragment() {
+    private lateinit var _binding: ReportMissingPetFragmentBinding
+    private val binding get() = _binding
+
+    private val reportMissingViewModel: ReportMissingViewModel by viewModels()
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent> //선택한 이미지 화면에 띄우기
 
@@ -44,12 +45,29 @@ class ReportSuspectedMissingPetFragment : Fragment() {
     private var longitude: Double = 131.0
     private var imgUri: Uri? = null
 
+    private var missingId by Delegates.notNull<Long>()
+
+    companion object {
+        private const val ARG_MISSING_ID = "missing_id"
+
+        fun newInstance(missingId: Long): ReportMissingPetFragment {
+            val fragment = ReportMissingPetFragment()
+            val args = Bundle()
+            args.putLong(ARG_MISSING_ID, missingId)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = ReportSuspectedMissingPetFragmentBinding.inflate(inflater, container, false)
+    ): View? {
+        _binding = ReportMissingPetFragmentBinding.inflate(inflater,container,false)
+
+        missingId = arguments?.getLong(ARG_MISSING_ID)
+            ?: throw IllegalArgumentException("Missing Id 없음")
 
         //목격 시간 선택
         binding.reportMissingTime.setOnClickListener {
@@ -128,6 +146,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
             dialog.dismiss()
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -135,6 +154,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
         resultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
+            Log.d("testt", "$result, ${result.resultCode}, ${result.data}")
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { uri ->
                     Glide.with(this)
@@ -146,7 +166,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
         }
 
         //이미지 업로드
-        binding.imgUploadBtn.setOnClickListener {
+        binding.imgUpload.setOnClickListener {
             setImage()
         }
 
@@ -170,7 +190,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
         }
 
         //'제보 하기' 클릭
-        binding.suspectedPetMissingRegisterButton.setOnClickListener {
+        binding.missingRegisterButton.setOnClickListener {
             Log.d("yeong", "제보 하기 클릭 됨")
             sendReport()
             sendCheck()
@@ -179,6 +199,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
     }
 
     private fun setImage() {
+        Log.d("testt", "setImage")
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "image/*"
         }
@@ -195,7 +216,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
         Log.d("sendReport", "Absolute Path: $absolutePath")
 
         if (absolutePath != null) {
-            val file = getFileFromUri(imgUri)
+            val file = getFileFromUri(absolutePath)
             val fileList = listOf(file)
 
             Log.d("sendReport", "File: $file")
@@ -204,7 +225,7 @@ class ReportSuspectedMissingPetFragment : Fragment() {
             if (file.exists() && file.length() > 0) {
                 Log.d("sendReport", "File 정상: ${file.absolutePath}")
 
-                reportSuspectedViewModel.reportSuspected(
+                reportMissingViewModel.reportMissingObserve(
                     color = color,
                     gender = gender,
                     breed = species,
@@ -212,37 +233,11 @@ class ReportSuspectedMissingPetFragment : Fragment() {
                     foundLongitude = longitude,
                     foundLatitude = latitude,
                     foundDate = selectedDateTime,
-                    file = fileList
+                    file = fileList,
+                    missingId = missingId
                 )
             } else {
                 Log.e("sendReport", "File 에러")
-            }
-        }
-    }
-
-    private fun sendCheck() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            reportSuspectedViewModel.reportStatus.collect { status ->
-                when (status) {
-                    ReportStatus.SUCCESS -> {
-                        context?.let {
-                            val messageS = requireContext().getString(R.string.report_success)
-                            CustomToast.displayToast(it, messageS)
-                        }
-                        parentFragmentManager.popBackStack()
-                    }
-
-                    ReportStatus.ERROR -> {
-                        context?.let {
-                            val messageF = requireContext().getString(R.string.fail)
-                            CustomToast.displayToast(it, messageF)
-                        }
-                    }
-
-                    else -> {
-                        // IDLE 상태
-                    }
-                }
             }
         }
     }
@@ -257,8 +252,34 @@ class ReportSuspectedMissingPetFragment : Fragment() {
         return file
     }
 
+    private fun sendCheck() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            reportMissingViewModel.reportStatus.collect { status ->
+                when (status) {
+                    com.jnu.ui.enums.ReportStatus.SUCCESS -> {
+                        context?.let {
+                            val messageS = requireContext().getString(R.string.report_success)
+                            CustomToast.displayToast(it, messageS)
+                        }
+                        parentFragmentManager.popBackStack()
+                    }
+
+                    com.jnu.ui.enums.ReportStatus.ERROR -> {
+                        context?.let {
+                            val messageF = requireContext().getString(R.string.fail)
+                            CustomToast.displayToast(it, messageF)
+                        }
+                    }
+
+                    else -> {
+                        // IDLE 상태
+                    }
+                }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }

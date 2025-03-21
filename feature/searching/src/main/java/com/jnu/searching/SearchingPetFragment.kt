@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.searching
+package com.jnu.searching
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -23,7 +23,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.adapter.SearchingBtnListAdapter
 import com.jnu.togetherpet.databinding.FragmentSearchingPetBinding
 import com.jnu.togetherpet.extensions.toBitmap
@@ -33,7 +32,7 @@ import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.jnu.togetherpet.extensions.ItemSpacing
-import com.jnu.togetherpet.ui.fragment.searching.enums.ButtonType
+import com.jnu.ui.enums.ButtonType
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng
@@ -136,7 +135,7 @@ class SearchingPetFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             dataStoreRepository.missingStatus.collectLatest { isMissing ->
                 dataStoreRepository.petName.collectLatest { petName ->
-                    ButtonType.MyPET.setPetName(petName)
+                    com.jnu.ui.enums.ButtonType.MyPET.setPetName(petName)
                     updateAdapter(isMissing, petName)
                 }
             }
@@ -150,10 +149,10 @@ class SearchingPetFragment : Fragment() {
         binding.researchingBtnList.adapter = searchingBtnListAdapter
     }
 
-    private fun handleBtnClick(item: ButtonType) {
+    private fun handleBtnClick(item: com.jnu.ui.enums.ButtonType) {
         reportDataViewModel.updateSelectedBtn(item)
         when (item) {
-            ButtonType.MISSING -> {
+            com.jnu.ui.enums.ButtonType.MISSING -> {
                 binding.searchingMissingList.visibility = View.VISIBLE
                 binding.myPetMissingRegisterButton.visibility = View.VISIBLE
                 binding.searchingReportBtn.visibility = View.GONE
@@ -161,7 +160,7 @@ class SearchingPetFragment : Fragment() {
                 observeMissingReports()
             }
 
-            ButtonType.REPORT -> {
+            com.jnu.ui.enums.ButtonType.REPORT -> {
                 binding.searchingMissingList.visibility = View.VISIBLE
                 binding.myPetMissingRegisterButton.visibility = View.GONE
                 binding.searchingReportBtn.visibility = View.VISIBLE
@@ -170,7 +169,7 @@ class SearchingPetFragment : Fragment() {
                 observeSuspectedReports()
             }
 
-            ButtonType.MyPET -> {
+            com.jnu.ui.enums.ButtonType.MyPET -> {
                 binding.searchingMissingList.visibility = View.GONE
                 binding.myPetMissingRegisterButton.visibility = View.GONE
                 binding.searchingReportBtn.visibility = View.GONE
@@ -428,12 +427,12 @@ class SearchingPetFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             reportDataViewModel.setCenterPos(centerPos.latitude, centerPos.longitude)
             when (reportDataViewModel.selectedButton.value) {
-                ButtonType.MISSING -> {
+                com.jnu.ui.enums.ButtonType.MISSING -> {
                     Log.d("parent", "Missing Data Fetch")
                     reportDataViewModel.fetchMissingReports(centerPos.latitude, centerPos.longitude)
                 }
 
-                ButtonType.REPORT -> {
+                com.jnu.ui.enums.ButtonType.REPORT -> {
                     Log.d("parent", "Reported Data Fetch")
                     reportDataViewModel.fetchSuspectedReports(
                         centerPos.latitude,
@@ -441,7 +440,7 @@ class SearchingPetFragment : Fragment() {
                     )
                 }
 
-                ButtonType.MyPET -> {
+                com.jnu.ui.enums.ButtonType.MyPET -> {
                     Log.d("parent", "MyPet Data Fetch")
                     reportDataViewModel.fetchMyPetReports()
                 }

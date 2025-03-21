@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.searching.enums
+package com.jnu.model.enums
 
 // 같이 찾기 버튼 목록
 enum class ButtonType(var displayText: String) {

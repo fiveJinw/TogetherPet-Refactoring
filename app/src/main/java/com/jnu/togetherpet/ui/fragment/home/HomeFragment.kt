@@ -21,12 +21,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.databinding.FragmentHomeBinding
 import com.jnu.ui.MissingAdapter
-import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
-import com.jnu.togetherpet.ui.fragment.searching.SearchingPetFragment
+import com.jnu.searching.ReportDataViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.jnu.domain.GetTodayWalkingDataUseCase
-import com.jnu.togetherpet.utils.DpUtils.dpToPx
+import com.jnu.common.DpUtils.dpToPx
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -88,7 +87,7 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         Log.d("HomeFragment", "Initializing RecyclerView")
         reportAdapter = MissingAdapter(emptyList(), kakaoLocalRepository) { missingEntity ->
-            val searchingFragment = SearchingPetFragment()
+            val searchingFragment = com.jnu.searching.SearchingPetFragment()
 
             val bundle = Bundle().apply {
                 putString("missingId", missingEntity.petId.toString())

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.utils
+package com.jnu.common
 
 import android.content.Context
 import android.util.TypedValue

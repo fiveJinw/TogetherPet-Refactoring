@@ -1,11 +1,8 @@
-package com.jnu.togetherpet.ui.viewmodel.report
+package com.jnu.searching
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.data.repo.MissingRepository
-import com.jnu.data.repo.ReportRepository
-import com.jnu.togetherpet.ui.fragment.searching.enums.ButtonType
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +20,8 @@ class ReportDataViewModel @Inject constructor(
     private val missingRepository: com.jnu.data.repo.MissingRepository
 ) : ViewModel() {
 
-    private val _selectedButton = MutableStateFlow(ButtonType.MISSING)
-    val selectedButton: StateFlow<ButtonType> get() = _selectedButton
+    private val _selectedButton = MutableStateFlow(com.jnu.searching.enums.ButtonType.MISSING)
+    val selectedButton: StateFlow<com.jnu.searching.enums.ButtonType> get() = _selectedButton
 
     val missingReports: StateFlow<List<com.jnu.database.model.MissingEntity>> = missingRepository.getAllMissingReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
@@ -46,7 +43,7 @@ class ReportDataViewModel @Inject constructor(
     private val _centerPos = MutableStateFlow<LatLng>(LatLng.from(0.0, 0.0))
     val centerPos get() = _centerPos.asStateFlow()
 
-    fun updateSelectedBtn(buttonType: ButtonType) {
+    fun updateSelectedBtn(buttonType: com.jnu.searching.enums.ButtonType) {
         _selectedButton.value = buttonType
     }
 

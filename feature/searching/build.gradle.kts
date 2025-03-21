@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.togetherpet.android.library)
     alias(libs.plugins.togetherpet.hilt)
+    alias(libs.plugins.togetherpet.kakao)
 }
 
 android {
@@ -11,6 +12,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.data)
+    implementation(projects.core.common)
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

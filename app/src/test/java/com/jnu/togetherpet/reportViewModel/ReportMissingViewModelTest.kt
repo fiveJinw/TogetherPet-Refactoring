@@ -1,8 +1,7 @@
 package com.jnu.togetherpet.reportViewModel
 
-import com.jnu.data.repo.ReportRepository
-import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
-import com.jnu.togetherpet.ui.viewmodel.report.ReportMissingViewModel
+import com.jnu.searching.enums.ReportStatus
+import com.jnu.searching.ReportMissingViewModel
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -55,6 +54,6 @@ class ReportMissingViewModelTest {
                 color, latitude, longitude, "2024-11-15 14:30:00", description, breed, gender, missingId, fileList
             )
         }
-        assertEquals(ReportStatus.IDLE, viewModel.reportStatus.first())
+        assertEquals(com.jnu.searching.enums.ReportStatus.IDLE, viewModel.reportStatus.first())
     }
 }

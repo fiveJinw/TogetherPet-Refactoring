@@ -1,10 +1,9 @@
-package com.jnu.togetherpet.ui.viewmodel.report
+package com.jnu.searching
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.data.repo.ReportRepository
-import com.jnu.togetherpet.ui.fragment.searching.enums.ReportStatus
+import com.jnu.searching.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,8 +19,8 @@ class ReportSuspectedViewModel @Inject constructor(
     private val reportRepository : com.jnu.data.repo.ReportRepository
 ) : ViewModel() {
 
-    private val _reportStatus = MutableStateFlow(ReportStatus.IDLE)
-    val reportStatus: StateFlow<ReportStatus> = _reportStatus
+    private val _reportStatus = MutableStateFlow(com.jnu.searching.enums.ReportStatus.IDLE)
+    val reportStatus: StateFlow<com.jnu.searching.enums.ReportStatus> = _reportStatus
 
     fun reportSuspected(
         color: String,
@@ -44,16 +43,16 @@ class ReportSuspectedViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 reportRepository.registerReportWithoutMissing(color, foundLatitude, foundLongitude, parsedDate, description, breed, gender, file)
-                _reportStatus.value = ReportStatus.SUCCESS // 성공 시
+                _reportStatus.value = com.jnu.searching.enums.ReportStatus.SUCCESS // 성공 시
             } catch (e: com.jnu.model.APIException) {
                 if(e.errorResponse.code == -20401){
                     reportRepository.registerReportWithoutMissing(color, foundLatitude, foundLongitude, parsedDate, description, "말티즈", gender, file)
-                    _reportStatus.value = ReportStatus.SUCCESS
+                    _reportStatus.value = com.jnu.searching.enums.ReportStatus.SUCCESS
                 }
-                else _reportStatus.value = ReportStatus.ERROR // 실패 시
+                else _reportStatus.value = com.jnu.searching.enums.ReportStatus.ERROR // 실패 시
             } finally {
                 // 초기화 또는 다음 요청을 위해 IDLE 상태로 되돌림
-                _reportStatus.value = ReportStatus.IDLE
+                _reportStatus.value = com.jnu.searching.enums.ReportStatus.IDLE
             }
         }
     }
