@@ -99,7 +99,7 @@ class LocationSelectFragment : DialogFragment() {
                     // cameraPosition -> 맵 가운데 위치
                     // 항상 맵 가운데에 핀이 위치 -> 핀의 위치를 반환.
                     lifecycleScope.launch {
-                        val address = withContext(Dispatchers.IO) {
+                        val address  = withContext(Dispatchers.IO) {
                             kakaoLocalRepository.latLngToAddress(cameraPosition.position)
                         }
                         Log.d("testt", address.toString())

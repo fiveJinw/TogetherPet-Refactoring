@@ -9,9 +9,9 @@ import javax.inject.Singleton
 
 @Singleton
 class KakaoLocalSource @Inject constructor(
-    private val kakaoLocalService: com.jnu.network.retrofit.KakaoLocalService
+    private val kakaoLocalService: KakaoLocalService
 ) {
-    suspend fun latLngToAddress(longitude: String, latitude: String): List<com.jnu.network.model.AddressDTO> {
+    suspend fun latLngToAddress(longitude: String, latitude: String): List<AddressDTO> {
         val result = kakaoLocalService.changeLatLngToAddress(
             BuildConfig.KAKAO_LOCAL_API_KEY,
             longitude,

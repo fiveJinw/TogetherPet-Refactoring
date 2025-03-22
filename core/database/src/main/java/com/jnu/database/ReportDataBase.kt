@@ -10,5 +10,5 @@ import com.jnu.model.entities.ReportEntity
 @Database(entities = [ReportEntity::class], version = 1, exportSchema = false)
 @TypeConverters(TypeConverterModule::class)
 abstract class ReportDataBase : RoomDatabase() {
-    abstract fun reportDao(): com.jnu.database.dao.ReportDao
+    abstract fun reportDao(): ReportDao
 }

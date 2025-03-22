@@ -9,9 +9,9 @@ import javax.inject.Singleton
 
 @Singleton
 class KakaoLocalRepository @Inject constructor(
-    private val kakaoLocalSource: com.jnu.network.datasource.KakaoLocalSource
+    private val kakaoLocalSource: KakaoLocalSource
 ) {
-    suspend fun latLngToAddress(latLng: LatLng) : com.jnu.network.model.AddressDTO {
+    suspend fun latLngToAddress(latLng: LatLng) : AddressDTO {
         Log.d("testt", "longitude : ${latLng.longitude}, latitude : ${latLng.latitude}")
         return kakaoLocalSource.latLngToAddress(latLng.longitude.toString(), latLng.latitude.toString()).first()
     }
