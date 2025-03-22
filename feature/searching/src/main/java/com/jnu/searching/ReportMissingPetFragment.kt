@@ -17,12 +17,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.jnu.togetherpet.databinding.DateTimePickerBinding
-import com.jnu.togetherpet.databinding.ReportMissingPetFragmentBinding
-import com.jnu.togetherpet.ui.fragment.common.CustomToast
-import com.jnu.togetherpet.ui.viewmodel.report.ReportMissingViewModel
-import com.jnu.togetherpet.ui.fragment.common.LocationSelectFragment
-import com.jnu.ui.enums.ReportStatus
+import com.jnu.model.enums.ReportStatus
+import com.jnu.searching.databinding.DateTimePickerBinding
+import com.jnu.searching.databinding.ReportMissingPetFragmentBinding
+import com.jnu.ui.CustomToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
@@ -256,17 +254,17 @@ class ReportMissingPetFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             reportMissingViewModel.reportStatus.collect { status ->
                 when (status) {
-                    com.jnu.ui.enums.ReportStatus.SUCCESS -> {
+                    ReportStatus.SUCCESS -> {
                         context?.let {
-                            val messageS = requireContext().getString(R.string.report_success)
+                            val messageS = requireContext().getString(com.jnu.ui.R.string.report_success)
                             CustomToast.displayToast(it, messageS)
                         }
                         parentFragmentManager.popBackStack()
                     }
 
-                    com.jnu.ui.enums.ReportStatus.ERROR -> {
+                    ReportStatus.ERROR -> {
                         context?.let {
-                            val messageF = requireContext().getString(R.string.fail)
+                            val messageF = requireContext().getString(com.jnu.ui.R.string.fail)
                             CustomToast.displayToast(it, messageF)
                         }
                     }

@@ -1,6 +1,7 @@
 package com.jnu.data.repo
 
 import android.util.Log
+import com.jnu.model.entities.WalkEntity
 import com.kakao.vectormap.LatLng
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -38,7 +39,7 @@ class WalkingRepository @Inject constructor(
         walkCalories : Long,
         walkDay : LocalDate
     ) {
-        val walkEntity = com.jnu.database.model.WalkEntity(
+        val walkEntity = WalkEntity(
             0,
             distance.toLong(),
             walkTime,

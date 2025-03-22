@@ -23,16 +23,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.jnu.togetherpet.ui.adapter.SearchingBtnListAdapter
-import com.jnu.togetherpet.databinding.FragmentSearchingPetBinding
-import com.jnu.togetherpet.extensions.toBitmap
 import com.jnu.ui.MissingAdapter
-import com.jnu.togetherpet.ui.adapter.ReportAdapter
-import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.jnu.togetherpet.extensions.ItemSpacing
-import com.jnu.ui.enums.ButtonType
+import com.jnu.common.extensions.ItemSpacing
+import com.jnu.common.extensions.toBitmap
+import com.jnu.model.entities.MissingEntity
+import com.jnu.model.entities.ReportEntity
+import com.jnu.model.enums.ButtonType
+import com.jnu.searching.databinding.FragmentSearchingPetBinding
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.LatLng
@@ -135,7 +134,7 @@ class SearchingPetFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             dataStoreRepository.missingStatus.collectLatest { isMissing ->
                 dataStoreRepository.petName.collectLatest { petName ->
-                    com.jnu.ui.enums.ButtonType.MyPET.setPetName(petName)
+                    ButtonType.MyPET.setPetName(petName)
                     updateAdapter(isMissing, petName)
                 }
             }
@@ -149,10 +148,10 @@ class SearchingPetFragment : Fragment() {
         binding.researchingBtnList.adapter = searchingBtnListAdapter
     }
 
-    private fun handleBtnClick(item: com.jnu.ui.enums.ButtonType) {
+    private fun handleBtnClick(item: ButtonType) {
         reportDataViewModel.updateSelectedBtn(item)
         when (item) {
-            com.jnu.ui.enums.ButtonType.MISSING -> {
+            ButtonType.MISSING -> {
                 binding.searchingMissingList.visibility = View.VISIBLE
                 binding.myPetMissingRegisterButton.visibility = View.VISIBLE
                 binding.searchingReportBtn.visibility = View.GONE
@@ -160,7 +159,7 @@ class SearchingPetFragment : Fragment() {
                 observeMissingReports()
             }
 
-            com.jnu.ui.enums.ButtonType.REPORT -> {
+            ButtonType.REPORT -> {
                 binding.searchingMissingList.visibility = View.VISIBLE
                 binding.myPetMissingRegisterButton.visibility = View.GONE
                 binding.searchingReportBtn.visibility = View.VISIBLE
@@ -169,7 +168,7 @@ class SearchingPetFragment : Fragment() {
                 observeSuspectedReports()
             }
 
-            com.jnu.ui.enums.ButtonType.MyPET -> {
+            ButtonType.MyPET -> {
                 binding.searchingMissingList.visibility = View.GONE
                 binding.myPetMissingRegisterButton.visibility = View.GONE
                 binding.searchingReportBtn.visibility = View.GONE
@@ -198,7 +197,7 @@ class SearchingPetFragment : Fragment() {
         }
     }
 
-    private suspend fun setMissingMarker(missings: List<com.jnu.database.model.MissingEntity>) {
+    private suspend fun setMissingMarker(missings: List<MissingEntity>) {
         val labelManager: LabelManager? = kakaoMap?.labelManager
         labelManager?.clearAll() // 기존 마커 초기화
 
@@ -214,7 +213,7 @@ class SearchingPetFragment : Fragment() {
             Glide.with(this)
                 .load(Uri.parse(pet.petImageUrl.first()))
                 .apply(RequestOptions())
-                .placeholder(R.drawable.main_logo) // 기본 이미지 설정
+                .placeholder(com.jnu.ui.R.drawable.main_logo) // 기본 이미지 설정
                 .into(object : CustomTarget<Drawable>() {
                     override fun onResourceReady(
                         resource: Drawable,
@@ -277,7 +276,7 @@ class SearchingPetFragment : Fragment() {
         bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
     }
 
-    private suspend fun setReportMarker(suspected: List<com.jnu.database.model.ReportEntity>) {
+    private suspend fun setReportMarker(suspected: List<ReportEntity>) {
         val labelManager: LabelManager? = kakaoMap?.labelManager
         labelManager?.clearAll() // 기존 마커 초기화
 
@@ -293,7 +292,7 @@ class SearchingPetFragment : Fragment() {
             Glide.with(this)
                 .load(Uri.parse(pet.imageUrl.first()))
                 .apply(RequestOptions())
-                .placeholder(R.drawable.main_logo) // 기본 이미지 설정
+                .placeholder(com.jnu.ui.R.drawable.main_logo) // 기본 이미지 설정
                 .into(object : CustomTarget<Drawable>() {
                     override fun onResourceReady(
                         resource: Drawable,
@@ -427,12 +426,12 @@ class SearchingPetFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             reportDataViewModel.setCenterPos(centerPos.latitude, centerPos.longitude)
             when (reportDataViewModel.selectedButton.value) {
-                com.jnu.ui.enums.ButtonType.MISSING -> {
+                ButtonType.MISSING -> {
                     Log.d("parent", "Missing Data Fetch")
                     reportDataViewModel.fetchMissingReports(centerPos.latitude, centerPos.longitude)
                 }
 
-                com.jnu.ui.enums.ButtonType.REPORT -> {
+                ButtonType.REPORT -> {
                     Log.d("parent", "Reported Data Fetch")
                     reportDataViewModel.fetchSuspectedReports(
                         centerPos.latitude,
@@ -440,7 +439,7 @@ class SearchingPetFragment : Fragment() {
                     )
                 }
 
-                com.jnu.ui.enums.ButtonType.MyPET -> {
+                ButtonType.MyPET -> {
                     Log.d("parent", "MyPet Data Fetch")
                     reportDataViewModel.fetchMyPetReports()
                 }

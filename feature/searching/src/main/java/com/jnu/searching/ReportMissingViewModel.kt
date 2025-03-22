@@ -2,7 +2,7 @@ package com.jnu.searching
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.searching.enums.ReportStatus
+import com.jnu.model.enums.ReportStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +17,8 @@ import javax.inject.Inject
 class ReportMissingViewModel @Inject constructor(
     private val reportRepository: com.jnu.data.repo.ReportRepository
 ) : ViewModel() {
-    private val _reportStatus = MutableStateFlow(com.jnu.searching.enums.ReportStatus.IDLE)
-    val reportStatus: StateFlow<com.jnu.searching.enums.ReportStatus> = _reportStatus
+    private val _reportStatus = MutableStateFlow(ReportStatus.IDLE)
+    val reportStatus: StateFlow<ReportStatus> = _reportStatus
 
     fun reportMissingObserve(
         color: String,
@@ -48,7 +48,7 @@ class ReportMissingViewModel @Inject constructor(
                     missingId,
                     file
                 )
-                _reportStatus.value = com.jnu.searching.enums.ReportStatus.SUCCESS // 성공 시
+                _reportStatus.value = ReportStatus.SUCCESS // 성공 시
 
             } catch (e: com.jnu.model.APIException) {
                 if (e.errorResponse.code == -20401) {
@@ -63,11 +63,11 @@ class ReportMissingViewModel @Inject constructor(
                         missingId,
                         file
                     )
-                    _reportStatus.value = com.jnu.searching.enums.ReportStatus.SUCCESS
+                    _reportStatus.value = ReportStatus.SUCCESS
                 }
             } finally {
                 // 초기화 또는 다음 요청을 위해 IDLE 상태로 되돌림
-                _reportStatus.value = com.jnu.searching.enums.ReportStatus.IDLE
+                _reportStatus.value = ReportStatus.IDLE
             }
         }
     }

@@ -13,12 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.jnu.datastore.DataStoreRepository
-import com.jnu.togetherpet.databinding.DateTimePickerBinding
-import com.jnu.togetherpet.databinding.ReportMyPetMissingFragmentBinding
-import com.jnu.togetherpet.ui.fragment.common.CustomToast
-import com.jnu.togetherpet.ui.viewmodel.report.ReportMyPetViewModel
-import com.jnu.togetherpet.ui.fragment.common.LocationSelectFragment
-import com.jnu.ui.enums.ReportStatus
+import com.jnu.model.enums.ReportStatus
+import com.jnu.searching.databinding.DateTimePickerBinding
+import com.jnu.searching.databinding.ReportMyPetMissingFragmentBinding
+import com.jnu.ui.CustomToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -180,18 +178,18 @@ class MyPetReportFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             reportMyPetViewModel.reportStatus.collect { status ->
                 when (status) {
-                    com.jnu.ui.enums.ReportStatus.SUCCESS -> {
+                    ReportStatus.SUCCESS -> {
                         context?.let {
-                            val messageS = requireContext().getString(R.string.my_pet_report_success)
+                            val messageS = requireContext().getString(com.jnu.ui.R.string.my_pet_report_success)
                             CustomToast.displayToast(it, messageS)
                         }
                         dataStoreRepository.saveMissingStatus(true)
                         parentFragmentManager.popBackStack()
                     }
 
-                    com.jnu.ui.enums.ReportStatus.ERROR -> {
+                    ReportStatus.ERROR -> {
                         context?.let {
-                            val messageF = requireContext().getString(R.string.fail)
+                            val messageF = requireContext().getString(com.jnu.ui.R.string.fail)
                             CustomToast.displayToast(it, messageF)
                         }
                     }

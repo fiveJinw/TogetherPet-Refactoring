@@ -2,8 +2,8 @@ package com.jnu.data.repo
 
 import android.content.Context
 import android.util.Log
-import com.jnu.network.datasource.MissingSource
-import com.jnu.network.model.MissingRegisterRequestDTO
+import com.jnu.model.dto.MissingRegisterRequestDTO
+import com.jnu.model.entities.MissingEntity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class MissingRepository @Inject constructor(
     private val missingDao: com.jnu.database.dao.MissingDao
 ) {
     suspend fun registerMissing(
-        missingRegisterRequestDTO: com.jnu.network.model.MissingRegisterRequestDTO
+        missingRegisterRequestDTO: MissingRegisterRequestDTO
     ) {
         missingSource.registerMissing(
             tokenRepository.getTokenOrThrow(),
@@ -32,7 +32,7 @@ class MissingRepository @Inject constructor(
         missingDao.insertMissing(
             missingSource.getMissingNearBy(latitude, longitude)
                 .map { missing ->
-                    com.jnu.database.model.MissingEntity(
+                    MissingEntity(
                         missing.missingId,
                         missing.petId,
                         missing.latitude,
@@ -49,7 +49,7 @@ class MissingRepository @Inject constructor(
 
     suspend fun getMissingByMissingId(
         missingId: Long
-    ): com.jnu.database.model.MissingEntity? {
+    ): MissingEntity? {
         val findMissing = missingDao.getMissing(missingId)
         Log.d("MissingRepository", "Initial findMissing: $findMissing")
 
@@ -69,5 +69,5 @@ class MissingRepository @Inject constructor(
         return null
     }
 
-    fun getAllMissingReports(): Flow<List<com.jnu.database.model.MissingEntity>> = missingDao.getAllMissingReports()
+    fun getAllMissingReports(): Flow<List<MissingEntity>> = missingDao.getAllMissingReports()
 }

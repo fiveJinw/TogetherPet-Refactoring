@@ -10,12 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.jnu.data.repo.KakaoLocalRepository
-import com.jnu.togetherpet.databinding.ReportInfoBottomSheetBinding
-import com.jnu.togetherpet.ui.viewmodel.report.ReportDataViewModel
-import com.jnu.togetherpet.utils.DpUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.jnu.common.DpUtils
 import com.jnu.common.extensions.formatDateTime
+import com.jnu.searching.databinding.ReportInfoBottomSheetBinding
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

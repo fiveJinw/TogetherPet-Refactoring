@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.location
+package com.jnu.searching
 
 import android.Manifest
 import android.annotation.SuppressLint

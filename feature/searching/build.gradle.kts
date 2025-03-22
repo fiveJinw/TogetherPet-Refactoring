@@ -14,6 +14,9 @@ android {
 dependencies {
     implementation(projects.core.data)
     implementation(projects.core.common)
+    implementation(projects.core.model)
+    implementation(projects.core.ui)
+    implementation(projects.core.datastore)
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -22,6 +25,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.1")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.1")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
 }

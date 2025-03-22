@@ -1,4 +1,4 @@
-package com.jnu.network.model
+package com.jnu.model.dto
 
 import com.google.gson.annotations.SerializedName
 

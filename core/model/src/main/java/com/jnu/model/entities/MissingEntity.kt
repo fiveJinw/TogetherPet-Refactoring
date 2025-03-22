@@ -1,4 +1,4 @@
-package com.jnu.database.model
+package com.jnu.model.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

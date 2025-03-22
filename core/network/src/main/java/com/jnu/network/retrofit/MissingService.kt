@@ -1,8 +1,6 @@
 package com.jnu.network.retrofit
 
-import com.jnu.network.model.MissingDetailResponseDTO
-import com.jnu.network.model.MissingRegisterRequestDTO
-import com.jnu.network.model.MissingResponseDTO
+import com.jnu.model.dto.MissingRegisterRequestDTO
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -11,7 +9,7 @@ interface MissingService {
     @POST("/api/v1/missing")
     suspend fun registerMissing(
         @Header("Authorization") token: String,
-        @Body missingRegisterRequestDTO: com.jnu.network.model.MissingRegisterRequestDTO
+        @Body missingRegisterRequestDTO: MissingRegisterRequestDTO
     ): Response<Unit>
 
     @GET("/api/v1/missing")

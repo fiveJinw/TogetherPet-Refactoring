@@ -3,6 +3,9 @@ package com.jnu.searching
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jnu.model.entities.MissingEntity
+import com.jnu.model.entities.ReportEntity
+import com.jnu.model.enums.ButtonType
 import com.kakao.vectormap.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,30 +23,30 @@ class ReportDataViewModel @Inject constructor(
     private val missingRepository: com.jnu.data.repo.MissingRepository
 ) : ViewModel() {
 
-    private val _selectedButton = MutableStateFlow(com.jnu.searching.enums.ButtonType.MISSING)
-    val selectedButton: StateFlow<com.jnu.searching.enums.ButtonType> get() = _selectedButton
+    private val _selectedButton = MutableStateFlow(ButtonType.MISSING)
+    val selectedButton: StateFlow<ButtonType> get() = _selectedButton
 
-    val missingReports: StateFlow<List<com.jnu.database.model.MissingEntity>> = missingRepository.getAllMissingReports()
+    val missingReports: StateFlow<List<MissingEntity>> = missingRepository.getAllMissingReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     // 내 반려동물 제보 StateFlow
-    val myPetReports: StateFlow<List<com.jnu.database.model.ReportEntity>> = reportRepository.getOwnReports()
+    val myPetReports: StateFlow<List<ReportEntity>> = reportRepository.getOwnReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     // 근처 목격 제보 StateFlow
-    val nearbySuspectedReports: StateFlow<List<com.jnu.database.model.ReportEntity>> = reportRepository.getNearbyReports()
+    val nearbySuspectedReports: StateFlow<List<ReportEntity>> = reportRepository.getNearbyReports()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
-    private val _missingDetail = MutableStateFlow<com.jnu.database.model.MissingEntity?>(null)
-    val missingDetail: StateFlow<com.jnu.database.model.MissingEntity?> = _missingDetail
+    private val _missingDetail = MutableStateFlow<MissingEntity?>(null)
+    val missingDetail: StateFlow<MissingEntity?> = _missingDetail
 
-    private val _suspectedDetail = MutableStateFlow<com.jnu.database.model.ReportEntity?>(null)
-    val suspectedDetail: StateFlow<com.jnu.database.model.ReportEntity?> = _suspectedDetail
+    private val _suspectedDetail = MutableStateFlow<ReportEntity?>(null)
+    val suspectedDetail: StateFlow<ReportEntity?> = _suspectedDetail
 
     private val _centerPos = MutableStateFlow<LatLng>(LatLng.from(0.0, 0.0))
     val centerPos get() = _centerPos.asStateFlow()
 
-    fun updateSelectedBtn(buttonType: com.jnu.searching.enums.ButtonType) {
+    fun updateSelectedBtn(buttonType: ButtonType) {
         _selectedButton.value = buttonType
     }
 

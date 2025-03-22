@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.extensions
+package com.jnu.common.extensions
 
 import android.graphics.Rect
 import android.view.View

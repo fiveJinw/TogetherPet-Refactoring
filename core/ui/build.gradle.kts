@@ -7,6 +7,7 @@ android {
     namespace = "com.jnu.ui"
     buildFeatures{
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -14,6 +15,7 @@ dependencies{
     implementation(projects.core.database)
     implementation(projects.core.data)
     implementation(projects.core.network)
+    implementation(projects.core.model)
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

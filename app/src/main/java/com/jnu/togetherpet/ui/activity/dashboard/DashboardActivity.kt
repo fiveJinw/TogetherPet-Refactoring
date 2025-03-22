@@ -5,9 +5,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.fragment.home.HomeFragment
-import com.jnu.togetherpet.ui.fragment.common.CustomToast
+import com.jnu.ui.CustomToast
 import com.jnu.togetherpet.ui.viewmodel.DashboardViewModel
 import com.jnu.ui.databinding.ActivityDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint

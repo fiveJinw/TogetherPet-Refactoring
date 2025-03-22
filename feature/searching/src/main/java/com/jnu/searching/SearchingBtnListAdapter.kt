@@ -1,11 +1,10 @@
-package com.jnu.togetherpet.ui.adapter
+package com.jnu.searching
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jnu.model.enums.ButtonType
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.SearchingBtnListBinding
+import com.jnu.searching.databinding.SearchingBtnListBinding
 
 class SearchingBtnListAdapter(
     //missingStatusKey 상태

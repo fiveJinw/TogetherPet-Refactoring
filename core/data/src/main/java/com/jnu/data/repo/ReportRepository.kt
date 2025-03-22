@@ -2,8 +2,7 @@ package com.jnu.data.repo
 
 import android.content.Context
 import android.util.Log
-import com.jnu.network.datasource.ReportSource
-import com.jnu.network.model.ReportCreateRequestDTO
+import com.jnu.model.entities.ReportEntity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -78,7 +77,7 @@ class ReportRepository @Inject constructor(
         reportDao.insertReports(
             reportSource.getRegisterOwnByUser(tokenRepository.getTokenOrThrow())
                 .map { report ->
-                    com.jnu.database.model.ReportEntity(
+                    ReportEntity(
                         report.id,
                         report.latitude,
                         report.longitude,
@@ -99,7 +98,7 @@ class ReportRepository @Inject constructor(
         Log.d("yeong", "근처 실종 데이터 받아옴")
         val reports = reportSource.getReportByLocation(latitude, longitude)
             .map { report ->
-                com.jnu.database.model.ReportEntity(
+                ReportEntity(
                     report.id,
                     report.latitude,
                     report.longitude,
@@ -116,7 +115,7 @@ class ReportRepository @Inject constructor(
 
     suspend fun getReportDetail(
         reportId: Long
-    ): com.jnu.database.model.ReportEntity? {
+    ): ReportEntity? {
         Log.d("yoeng","ReportId 전달 : $reportId")
         val findReport = reportDao.getReportById(reportId)
 
@@ -136,8 +135,8 @@ class ReportRepository @Inject constructor(
     }
 
     // 내 반려동물 목격 제보 가져오기
-    fun getOwnReports(): Flow<List<com.jnu.database.model.ReportEntity>> = reportDao.getOwnReports()
+    fun getOwnReports(): Flow<List<ReportEntity>> = reportDao.getOwnReports()
 
     // 근처 목격 제보 가져오기
-    fun getNearbyReports(): Flow<List<com.jnu.database.model.ReportEntity>> = reportDao.getNearbyReports()
+    fun getNearbyReports(): Flow<List<ReportEntity>> = reportDao.getNearbyReports()
 }

@@ -2,6 +2,7 @@ package com.jnu.network.datasource
 
 import android.util.Log
 import com.google.gson.Gson
+import com.jnu.model.dto.MissingRegisterRequestDTO
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,7 +13,7 @@ class MissingSource @Inject constructor(
 ) {
     suspend fun registerMissing(
         token: String,
-        missingRegisterRequestDTO: com.jnu.network.model.MissingRegisterRequestDTO
+        missingRegisterRequestDTO: MissingRegisterRequestDTO
     ) {
         val response = missingService.registerMissing(token, missingRegisterRequestDTO)
 

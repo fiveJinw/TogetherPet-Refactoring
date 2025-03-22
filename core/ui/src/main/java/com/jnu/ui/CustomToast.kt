@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.common
+package com.jnu.ui
 
 import android.content.Context
 import android.util.Log
@@ -6,8 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.ToastCustomBinding
+import com.jnu.ui.databinding.ToastCustomBinding
 
 object CustomToast {
     fun displayToast(context: Context, message: String): Toast {
