@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.fragment.home
+package com.jnu.home
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -18,14 +18,13 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.FragmentHomeBinding
 import com.jnu.ui.MissingAdapter
 import com.jnu.searching.ReportDataViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.jnu.domain.GetTodayWalkingDataUseCase
 import com.jnu.common.DpUtils.dpToPx
+import com.jnu.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -170,10 +169,10 @@ class HomeFragment : Fragment() {
         val avgCount = "-"
         val avgDistance = "-"
         val avgTime = "-"
-        binding.homeAvgCount.text = getString(R.string.home_avg_count, avgCount)
+        binding.homeAvgCount.text = getString(com.jnu.ui.R.string.home_avg_count, avgCount)
         binding.homeAvgDistance.text =
-            getString(R.string.home_avg_distance, avgDistance)
-        binding.homeAvgTime.text = getString(R.string.home_avg_time, avgTime)
+            getString(com.jnu.ui.R.string.home_avg_distance, avgDistance)
+        binding.homeAvgTime.text = getString(com.jnu.ui.R.string.home_avg_time, avgTime)
     }
 
     private fun setupUserInfo() {
