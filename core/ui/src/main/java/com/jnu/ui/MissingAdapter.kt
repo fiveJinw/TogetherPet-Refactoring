@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 
 class MissingAdapter(
     private var missings: List<MissingEntity>,
-    private val kakaoLocalRepository: com.jnu.data.repo.KakaoLocalRepository,
+    private val kakaoLocalRepository: KakaoLocalRepository,
     private val onItemClicked: (MissingEntity) -> Unit
 ) :
     RecyclerView.Adapter<MissingAdapter.MissingViewHolder>() {

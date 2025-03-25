@@ -89,6 +89,7 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.common)
     implementation(projects.feature.walking)
+    implementation(projects.feature.home)
     implementation(projects.core.domain)
     implementation(projects.feature.searching)
     testImplementation("junit:junit:4.13.2")
