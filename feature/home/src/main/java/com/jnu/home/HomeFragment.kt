@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -48,7 +49,7 @@ class HomeFragment : Fragment() {
     lateinit var getTodayWalkingDataUseCase: GetTodayWalkingDataUseCase
 
     //실종 제보 데이터
-//    private val reportDataViewModel: ReportDataViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var latitude: Double = 0.0
@@ -88,7 +89,7 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         Log.d("HomeFragment", "Initializing RecyclerView")
         reportAdapter = MissingAdapter(emptyList(), kakaoLocalRepository) { missingEntity ->
-            val searchingFragment = appNavigator.navigateToSearchingPage()
+            val searchingFragment = SearchingPetFragment
 
             val bundle = Bundle().apply {
                 putString("missingId", missingEntity.petId.toString())
@@ -105,19 +106,19 @@ class HomeFragment : Fragment() {
 
     private fun observeMissingReports() {
         viewLifecycleOwner.lifecycleScope.launch {
-//            reportDataViewModel.missingReports.collectLatest { missings ->
-//                if (missings.isEmpty()) {
-//                    Log.d("HomeFragment", "Missing db 데이터 없음")
-//                    binding.homeLogo.visibility = View.VISIBLE
-//                    binding.homeSos.visibility = View.GONE
-//                } else {
-//                    // 데이터가 있으면 로고 숨기고 RecyclerView 표시
-//                    Log.d("HomeFragment", "Missing 데이터베이스에 데이터 있음: ${missings.size} 개")
-//                    binding.homeLogo.visibility = View.GONE
-//                    binding.homeSos.visibility = View.VISIBLE
-//                    reportAdapter.updateReports(missings)
-//                }
-//            }
+            reportDataViewModel.missingReports.collectLatest { missings ->
+                if (missings.isEmpty()) {
+                    Log.d("HomeFragment", "Missing db 데이터 없음")
+                    binding.homeLogo.visibility = View.VISIBLE
+                    binding.homeSos.visibility = View.GONE
+                } else {
+                    // 데이터가 있으면 로고 숨기고 RecyclerView 표시
+                    Log.d("HomeFragment", "Missing 데이터베이스에 데이터 있음: ${missings.size} 개")
+                    binding.homeLogo.visibility = View.GONE
+                    binding.homeSos.visibility = View.VISIBLE
+                    reportAdapter.updateReports(missings)
+                }
+            }
         }
     }
 
@@ -139,10 +140,10 @@ class HomeFragment : Fragment() {
     private fun fetchMissingData() {
         viewLifecycleOwner.lifecycleScope.launch {
             if (latitude != 0.0 && longitude != 0.0) {
-//                reportDataViewModel.fetchMissingReports(
-//                    reportDataViewModel.centerPos.value.latitude,
-//                    reportDataViewModel.centerPos.value.longitude
-//                )
+                homeViewModel.fetchMissingReports(
+                    reportDataViewModel.centerPos.value.latitude,
+                    reportDataViewModel.centerPos.value.longitude
+                )
             } else {
                 Log.d("HomeFragment", "위치 정보가 없습니다.")
             }
