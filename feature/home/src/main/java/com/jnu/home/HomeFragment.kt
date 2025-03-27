@@ -24,6 +24,8 @@ import com.google.android.gms.location.LocationServices
 import com.jnu.domain.GetTodayWalkingDataUseCase
 import com.jnu.common.DpUtils.dpToPx
 import com.jnu.home.databinding.FragmentHomeBinding
+import com.jnu.searching.ReportDataViewModel
+import com.jnu.searching.SearchingPetFragment
 import com.jnu.ui.AppNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -49,7 +51,7 @@ class HomeFragment : Fragment() {
     lateinit var getTodayWalkingDataUseCase: GetTodayWalkingDataUseCase
 
     //실종 제보 데이터
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val reportDataViewModel: ReportDataViewModel by viewModels()
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var latitude: Double = 0.0
@@ -89,7 +91,7 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         Log.d("HomeFragment", "Initializing RecyclerView")
         reportAdapter = MissingAdapter(emptyList(), kakaoLocalRepository) { missingEntity ->
-            val searchingFragment = SearchingPetFragment
+            val searchingFragment = SearchingPetFragment()
 
             val bundle = Bundle().apply {
                 putString("missingId", missingEntity.petId.toString())
@@ -140,7 +142,7 @@ class HomeFragment : Fragment() {
     private fun fetchMissingData() {
         viewLifecycleOwner.lifecycleScope.launch {
             if (latitude != 0.0 && longitude != 0.0) {
-                homeViewModel.fetchMissingReports(
+                reportDataViewModel.fetchMissingReports(
                     reportDataViewModel.centerPos.value.latitude,
                     reportDataViewModel.centerPos.value.longitude
                 )
