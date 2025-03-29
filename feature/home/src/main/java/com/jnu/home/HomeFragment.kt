@@ -174,10 +174,10 @@ class HomeFragment : Fragment() {
         val avgCount = "-"
         val avgDistance = "-"
         val avgTime = "-"
-        binding.homeAvgCount.text = getString(com.jnu.ui.R.string.home_avg_count, avgCount)
+        binding.homeAvgCount.text = getString(com.jnu.designsystem.R.string.home_avg_count, avgCount)
         binding.homeAvgDistance.text =
-            getString(com.jnu.ui.R.string.home_avg_distance, avgDistance)
-        binding.homeAvgTime.text = getString(com.jnu.ui.R.string.home_avg_time, avgTime)
+            getString(com.jnu.designsystem.R.string.home_avg_distance, avgDistance)
+        binding.homeAvgTime.text = getString(com.jnu.designsystem.R.string.home_avg_time, avgTime)
     }
 
     private fun setupUserInfo() {

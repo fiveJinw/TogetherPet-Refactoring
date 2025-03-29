@@ -256,7 +256,7 @@ class ReportMissingPetFragment : Fragment() {
                 when (status) {
                     ReportStatus.SUCCESS -> {
                         context?.let {
-                            val messageS = requireContext().getString(com.jnu.ui.R.string.report_success)
+                            val messageS = requireContext().getString(com.jnu.designsystem.R.string.report_success)
                             CustomToast.displayToast(it, messageS)
                         }
                         parentFragmentManager.popBackStack()
@@ -264,7 +264,7 @@ class ReportMissingPetFragment : Fragment() {
 
                     ReportStatus.ERROR -> {
                         context?.let {
-                            val messageF = requireContext().getString(com.jnu.ui.R.string.fail)
+                            val messageF = requireContext().getString(com.jnu.designsystem.R.string.fail)
                             CustomToast.displayToast(it, messageF)
                         }
                     }

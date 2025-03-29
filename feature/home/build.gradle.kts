@@ -18,6 +18,7 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.datastore)
     implementation(projects.core.model)
+    implementation(projects.core.designsystem)
     implementation(projects.feature.searching)
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.core:core-ktx:1.12.0")

@@ -180,7 +180,7 @@ class MyPetReportFragment : Fragment() {
                 when (status) {
                     ReportStatus.SUCCESS -> {
                         context?.let {
-                            val messageS = requireContext().getString(com.jnu.ui.R.string.my_pet_report_success)
+                            val messageS = requireContext().getString(com.jnu.designsystem.R.string.my_pet_report_success)
                             CustomToast.displayToast(it, messageS)
                         }
                         dataStoreRepository.saveMissingStatus(true)
@@ -189,7 +189,7 @@ class MyPetReportFragment : Fragment() {
 
                     ReportStatus.ERROR -> {
                         context?.let {
-                            val messageF = requireContext().getString(com.jnu.ui.R.string.fail)
+                            val messageF = requireContext().getString(com.jnu.designsystem.R.string.fail)
                             CustomToast.displayToast(it, messageF)
                         }
                     }

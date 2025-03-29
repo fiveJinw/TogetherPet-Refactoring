@@ -18,6 +18,7 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.datastore)
     implementation(projects.core.network)
+    implementation(projects.core.designsystem)
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

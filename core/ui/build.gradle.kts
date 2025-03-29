@@ -16,6 +16,7 @@ dependencies{
     implementation(projects.core.data)
     implementation(projects.core.network)
     implementation(projects.core.model)
+    implementation(projects.core.designsystem)
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
