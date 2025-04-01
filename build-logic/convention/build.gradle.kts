@@ -45,6 +45,13 @@ gradlePlugin{
     }
 
     plugins{
+        register("test"){
+            id = "togetherpet.test"
+            implementationClass = "TestConventionPlugin"
+        }
+    }
+
+    plugins{
         register("kakao"){
             id = "togetherpet.kakao"
             implementationClass = "KakaoConventionPlugin"

@@ -11,7 +11,6 @@ class TestConventionPlugin : Plugin<Project> {
                 "testImplementation"(libs.findLibrary("androidx.arch.core").get())
                 "testImplementation"(libs.findLibrary("kotlinx.coroutines.test").get())
                 "implementation"(libs.findLibrary("io.mockk").get())
-
             }
         }
     }

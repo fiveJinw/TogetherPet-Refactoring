@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.data.repository
+package com
 
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule

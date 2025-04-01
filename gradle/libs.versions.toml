@@ -28,7 +28,7 @@ hilt = "2.51.1"
 mockk = "1.13.11"
 kakaoMap = "2.11.9"
 kakaoSdk = "2.20.6"
-core_testing = "2.1.0"
+core_testing = "2.2.0"
 coroutines_test = "1.3.9"
 
 [libraries]
@@ -47,7 +47,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 io-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk"}
-androidx-arch-core = { group = "androix.arch.core", name = "core-testing", version.ref = "core_testing"}
+androidx-arch-core = { group = "androidx.arch.core", name = "core-testing", version.ref = "core_testing"}
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines_test" }
 
 
@@ -89,4 +89,5 @@ togetherpet-android-library = { id = "togetherpet.android.library", version = "u
 togetherpet-hilt = { id = "togetherpet.hilt", version = "unspecified" }
 togetherpet-android-room = { id = "togetherpet.android.room", version = "unspecified" }
 togetherpet-kakao = { id = "togetherpet.kakao", version = "unspecified" }
+togetherpet-test = { id = "togetherpet.test", version = "unspecified"}
 
