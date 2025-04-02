@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.viewmodel.walking
+package com.jnu.walking
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jnu.data.repo.UserRepository
@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlinx.coroutines.test.advanceUntilIdle
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -24,8 +25,8 @@ class WalkingPetRecordViewModelTest{
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: WalkingPetRecordViewModel
-    private val walkingRepository = mockk<com.jnu.data.repo.WalkingRepository>(relaxed = true)
-    private val userRepository = mockk<com.jnu.data.repo.UserRepository>(relaxed = true)
+    private val walkingRepository = mockk<WalkingRepository>(relaxed = true)
+    private val userRepository = mockk<UserRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 
     @Before
@@ -42,7 +43,9 @@ class WalkingPetRecordViewModelTest{
         coEvery { userRepository.getUserData() } returns mockk {
             every { petName } returns "빠삐"
         }
+
         viewModel = WalkingPetRecordViewModel(walkingRepository, userRepository)
+        advanceUntilIdle()
         assertEquals("빠삐", viewModel.petName.value)
     }
 
@@ -64,6 +67,7 @@ class WalkingPetRecordViewModelTest{
 
         viewModel.getRecordToLocal(date)
 
+        advanceUntilIdle()
         assertEquals(recordList, viewModel.arrayRecord.value)
         assertEquals(1500L, viewModel.allDistance.value)
         assertEquals(4000L, viewModel.allTime.value)

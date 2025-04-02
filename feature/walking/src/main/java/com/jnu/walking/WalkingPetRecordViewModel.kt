@@ -66,7 +66,6 @@ class WalkingPetRecordViewModel @Inject constructor(
 
     private fun setPetName() {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(3000)
             _petName.value = userRepository.getUserData().petName
         }
     }

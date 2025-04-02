@@ -46,7 +46,7 @@ class WalkingPetViewModel @Inject constructor(
     private val _arrayLoc = MutableStateFlow<ArrayList<LatLng>>(ArrayList())
     private val _lastLoc = MutableStateFlow(LatLng.from(0.0, 0.0))
     private val _isWalking = MutableStateFlow(false)
-    private val _petImage = MutableStateFlow<Uri>(Uri.EMPTY)
+    private val _petImage = MutableStateFlow<Uri>(Uri.parse(""))
     private val _petName = MutableStateFlow(" ")
 
     var base: Long = 0

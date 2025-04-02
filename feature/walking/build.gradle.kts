@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.togetherpet.android.library)
     alias(libs.plugins.togetherpet.hilt)
     alias(libs.plugins.togetherpet.kakao)
+    alias(libs.plugins.togetherpet.test)
 }
 
 android {

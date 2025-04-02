@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.ui.viewmodel.walking
+package com.jnu.walking
 
 import android.content.Context
 import android.net.Uri
@@ -31,8 +31,8 @@ class WalkingPetViewModelTest {
     private lateinit var viewModel: WalkingPetViewModel
     private val context = mockk<Context>(relaxed = true)
     private val fusedLocationProviderClient = mockk<FusedLocationProviderClient>(relaxed = true)
-    private val walkingRepository = mockk<com.jnu.data.repo.WalkingRepository>(relaxed = true)
-    private val userRepository = mockk<com.jnu.data.repo.UserRepository>(relaxed = true)
+    private val walkingRepository = mockk<WalkingRepository>(relaxed = true)
+    private val userRepository = mockk<UserRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
 
     @Before
