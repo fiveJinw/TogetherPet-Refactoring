@@ -30,7 +30,7 @@ class RegistrationViewModel @Inject constructor(
     private val _petFeature = MutableStateFlow(" ")
     private val _userName = MutableStateFlow(" ")
 
-    private val _petImage = MutableStateFlow<Uri>(Uri.EMPTY)
+    private val _petImage = MutableStateFlow<Uri>(Uri.parse(""))
     val petName: StateFlow<String> get() = _petName.asStateFlow()
     val petAge: StateFlow<Long> get() = _petAge.asStateFlow()
     val petSpecies: StateFlow<String> get() = _petSpecies.asStateFlow()

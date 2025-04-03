@@ -1,9 +1,8 @@
-package com.jnu.togetherpet.ui.viewmodel.report
+package com.jnu.registration
 
 import android.net.Uri
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.datastore.DataStoreRepository
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
@@ -23,7 +22,7 @@ class RegistrationViewModelTest {
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: com.jnu.registration.RegistrationViewModel
+    private lateinit var viewModel: RegistrationViewModel
     private val mockRegisterRepository = mockk<com.jnu.data.repo.RegisterRepository>(relaxed = true)
     private val mockDataStoreRepository = mockk<com.jnu.datastore.DataStoreRepository>(relaxed = true)
     private val testDispatcher = StandardTestDispatcher()
@@ -33,7 +32,10 @@ class RegistrationViewModelTest {
         // Dispatchers.Main을 가상의 TestDispatcher로 설정
         Dispatchers.setMain(testDispatcher)
 
-        viewModel = com.jnu.registration.RegistrationViewModel(
+        mockkStatic(Uri::class)
+        every { Uri.parse(any()) } returns mockk(relaxed = true)
+
+        viewModel = RegistrationViewModel(
             mockRegisterRepository,
             mockDataStoreRepository
         )
