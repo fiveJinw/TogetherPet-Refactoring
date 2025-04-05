@@ -1,7 +1,7 @@
-package com.jnu.togetherpet.reportViewModel
+package com.jnu.searching
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jnu.searching.enums.ButtonType
+import com.jnu.model.enums.ButtonType
 import com.jnu.searching.ReportDataViewModel
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
@@ -41,25 +41,25 @@ class ReportDataViewModelTest {
 
     @Test
     fun `selectedBtn 초기값 확인`() = runTest {
-        assertEquals(com.jnu.searching.enums.ButtonType.MISSING, viewModel.selectedButton.value)
+        assertEquals(ButtonType.MISSING, viewModel.selectedButton.value)
     }
 
     @Test
     fun `MISSING 버튼 타입 업데이트 확인`() = runTest {
-        viewModel.updateSelectedBtn(com.jnu.searching.enums.ButtonType.MISSING)
-        assertEquals(com.jnu.searching.enums.ButtonType.MISSING, viewModel.selectedButton.value)
+        viewModel.updateSelectedBtn(ButtonType.MISSING)
+        assertEquals(ButtonType.MISSING, viewModel.selectedButton.value)
     }
 
     @Test
     fun `REPORT 버튼 타입 업데이트 확인`() = runTest {
-        viewModel.updateSelectedBtn(com.jnu.searching.enums.ButtonType.REPORT)
-        assertEquals(com.jnu.searching.enums.ButtonType.REPORT, viewModel.selectedButton.value)
+        viewModel.updateSelectedBtn(ButtonType.REPORT)
+        assertEquals(ButtonType.REPORT, viewModel.selectedButton.value)
     }
 
     @Test
     fun `MuPet 버튼 타입 업데이트 확인`() = runTest {
-        viewModel.updateSelectedBtn(com.jnu.searching.enums.ButtonType.MyPET)
-        assertEquals(com.jnu.searching.enums.ButtonType.MyPET, viewModel.selectedButton.value)
+        viewModel.updateSelectedBtn(ButtonType.MyPET)
+        assertEquals(ButtonType.MyPET, viewModel.selectedButton.value)
     }
 
     @Test
