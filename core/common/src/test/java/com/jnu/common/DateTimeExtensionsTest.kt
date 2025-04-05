@@ -1,7 +1,7 @@
-package com.jnu.togetherpet.extensions
+package com.jnu.common
 
-import com.jnu.togetherpet.extensions.formatDateTime
-import com.jnu.togetherpet.extensions.formattingLocalDateTimeToString
+import com.jnu.common.extensions.formatDateTime
+import com.jnu.common.extensions.formattingLocalDateTimeToString
 import org.junit.Test
 import org.junit.Assert.assertEquals
 import java.time.LocalDateTime
