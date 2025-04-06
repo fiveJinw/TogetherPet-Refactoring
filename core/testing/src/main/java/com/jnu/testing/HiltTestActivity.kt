@@ -1,4 +1,4 @@
-package com.jnu.togetherpet
+package com.jnu.testing
 
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint

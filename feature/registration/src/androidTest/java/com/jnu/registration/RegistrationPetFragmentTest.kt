@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.Registration
+package com.jnu.registration
 
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -8,10 +8,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.launchFragmentInHiltContainer
 import com.jnu.registration.RegistrationPetFragment
 import com.jnu.registration.RegistrationViewModel
+import com.jnu.testing.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.Job
@@ -91,25 +90,25 @@ class RegistrationPetFragmentTest {
             Navigation.setViewNavController(requireView(), navController)
             val viewModel: com.jnu.registration.RegistrationViewModel by activityViewModels()
 
-                job = lifecycleScope.launch {
-                    viewModel.petName.collect { value ->
-                        collectedPetName = value
-                    }
+            job = lifecycleScope.launch {
+                viewModel.petName.collect { value ->
+                    collectedPetName = value
                 }
-                jobTwo = lifecycleScope.launch {
-                    viewModel.petAge.collect { value ->
-                        collectedPetAge = value
-                    }
+            }
+            jobTwo = lifecycleScope.launch {
+                viewModel.petAge.collect { value ->
+                    collectedPetAge = value
                 }
-                jobThree = lifecycleScope.launch {
-                    viewModel.petSpecies.collect { value ->
-                        collectedSpecies = value
-                    }
+            }
+            jobThree = lifecycleScope.launch {
+                viewModel.petSpecies.collect { value ->
+                    collectedSpecies = value
                 }
-                jobFour = lifecycleScope.launch {
-                    viewModel.neutering.collect { value ->
-                        collectedNeutering = value
-                    }
+            }
+            jobFour = lifecycleScope.launch {
+                viewModel.neutering.collect { value ->
+                    collectedNeutering = value
+                }
             }
         }
 

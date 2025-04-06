@@ -1,4 +1,4 @@
-package com.jnu.togetherpet
+package com.jnu.testing
 
 import android.content.ComponentName
 import android.content.Intent
@@ -26,7 +26,7 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
 
     ActivityScenario.launch<HiltTestActivity>(startActivityIntent).onActivity { activity ->
         val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            Preconditions.checkNotNull(T::class.java.classLoader),
+            checkNotNull(T::class.java.classLoader),
             T::class.java.name
         )
         fragment.arguments = fragmentArgs

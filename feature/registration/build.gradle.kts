@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.togetherpet.android.library)
     alias(libs.plugins.togetherpet.hilt)
     alias(libs.plugins.togetherpet.test)
+    alias(libs.plugins.togetherpet.android.test)
 }
 
 android {
@@ -17,6 +18,7 @@ dependencies {
     implementation(projects.core.data) // viewmodel
     implementation(projects.core.network) // viewmodel
     implementation(projects.core.datastore)
+    implementation(projects.core.testing)
     implementation(projects.core.designsystem)
     implementation("androidx.fragment:fragment-ktx:1.8.5")
     implementation("androidx.core:core-ktx:1.12.0")

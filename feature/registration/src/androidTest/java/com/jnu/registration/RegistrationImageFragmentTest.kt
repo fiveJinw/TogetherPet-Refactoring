@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.Registration
+package com.jnu.registration
 
 import android.content.Intent
 import android.net.Uri
@@ -14,10 +14,9 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.*
 import androidx.test.espresso.intent.matcher.IntentMatchers.*
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.launchFragmentInHiltContainer
 import com.jnu.registration.RegistrationImageFragment
 import com.jnu.registration.RegistrationViewModel
+import com.jnu.testing.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
@@ -78,10 +77,10 @@ class RegistrationImageFragmentTest {
             navController.setCurrentDestination(R.id.registrationImageFragment)
             Navigation.setViewNavController(requireView(), navController)
             requireView().findViewById<ImageView>(R.id.animal_image)
-                .setImageResource(R.drawable.emergency_icon)
+                .setImageResource(com.jnu.ui.R.drawable.emergency_icon)
             val viewModel: com.jnu.registration.RegistrationViewModel by activityViewModels()
 
-            viewModel.setPetImage(Uri.parse("android.resource://${context?.packageName}/${R.drawable.emergency_icon}"))
+            viewModel.setPetImage(Uri.parse("android.resource://${context?.packageName}/${com.jnu.ui.R.drawable.emergency_icon}"))
         }
         Thread.sleep(1000)
         onView(withId(R.id.animal_image)).check(matches(isDisplayed()))

@@ -1,4 +1,4 @@
-package com.jnu.togetherpet.Registration
+package com.jnu.registration
 
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -8,9 +8,8 @@ import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.launchFragmentInHiltContainer
 import com.jnu.registration.RegistrationStartFragment
+import com.jnu.testing.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -34,7 +33,7 @@ class RegistrationStartFragmentTest {
         val navController : NavController = TestNavHostController(
             ApplicationProvider.getApplicationContext())
 
-        launchFragmentInHiltContainer<com.jnu.registration.RegistrationStartFragment>{
+        launchFragmentInHiltContainer<com.jnu.registration.RegistrationStartFragment> {
             navController.setGraph(R.navigation.reg_navigation_graph)
             Navigation.setViewNavController(requireView(), navController)
         }

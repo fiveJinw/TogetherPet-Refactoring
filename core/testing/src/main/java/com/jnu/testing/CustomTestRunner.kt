@@ -1,4 +1,4 @@
-package com.jnu.togetherpet
+package com.jnu.testing
 
 import android.app.Application
 import android.content.Context

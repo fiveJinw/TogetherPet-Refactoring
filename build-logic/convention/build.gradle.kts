@@ -52,6 +52,13 @@ gradlePlugin{
     }
 
     plugins{
+        register("androidTest"){
+            id = "togetherpet.android.test"
+            implementationClass = "AndroidTestConventionPlugin"
+        }
+    }
+
+    plugins{
         register("kakao"){
             id = "togetherpet.kakao"
             implementationClass = "KakaoConventionPlugin"
