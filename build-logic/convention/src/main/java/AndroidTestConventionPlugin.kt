@@ -13,9 +13,14 @@ class AndroidTestConventionPlugin : Plugin<Project> {
             project.extensions.configure<LibraryExtension> {
                 defaultConfig {
                     testInstrumentationRunner = "com.example.HiltTestRunner"
-                }
-                packaging {
-                    resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
+                    packaging {
+                        resources {
+                            excludes += listOf(
+                                "META-INF/gradle/incremental.annotation.processors",
+                                "META-INF/LICENSE.md"
+                            )
+                        }
+                    }
                 }
 
                 dependencies {
