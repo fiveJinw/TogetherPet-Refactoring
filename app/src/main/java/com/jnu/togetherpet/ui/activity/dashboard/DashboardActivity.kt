@@ -5,11 +5,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.jnu.togetherpet.R
-import com.jnu.togetherpet.databinding.ActivityDashboardBinding
-import com.jnu.togetherpet.ui.fragment.home.HomeFragment
-import com.jnu.togetherpet.ui.fragment.common.CustomToast
+import com.jnu.home.HomeFragment
+import com.jnu.ui.CustomToast
 import com.jnu.togetherpet.ui.viewmodel.DashboardViewModel
+import com.jnu.ui.databinding.ActivityDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +25,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(view)
 
         handleItemClick()   //사용자가 클릭한 메뉴 정보를 viewModel에 전달
-        setFragment(HomeFragment()) // 디폴트 Fragment 설정
+        setFragment(com.jnu.home.HomeFragment()) // 디폴트 Fragment 설정
 
         //viewModel이 선택한 Fragment 나타내기
         dashboardViewModel.selectedFragment.observe(this) { fragment ->
@@ -44,7 +43,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.home_frameLayout, fragment)
+            .replace(com.jnu.ui.R.id.home_frameLayout, fragment)
             .commit()
     }
 

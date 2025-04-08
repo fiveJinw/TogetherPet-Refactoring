@@ -9,7 +9,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.jnu.togetherpet.ui.activity.login.LoginActivity
+import com.jnu.login.LoginActivity
 import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.viewmodel.SplashActivityViewModel
 import com.jnu.togetherpet.ui.activity.dashboard.DashboardActivity
@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun navigateToLogin() {
-        val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+        val intent = Intent(this@SplashActivity, com.jnu.login.LoginActivity::class.java)
         startActivity(intent)
         finish()
     }

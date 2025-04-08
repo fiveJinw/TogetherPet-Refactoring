@@ -3,8 +3,8 @@ package com.jnu.togetherpet.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jnu.togetherpet.data.repository.LoginRepository
-import com.jnu.togetherpet.data.repository.TokenRepository
+import com.jnu.data.repo.LoginRepository
+import com.jnu.data.repo.TokenRepository
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashActivityViewModel @Inject constructor(private val tokenRepository : TokenRepository, private val loginRepository: LoginRepository) : ViewModel() {
+class SplashActivityViewModel @Inject constructor(private val tokenRepository : com.jnu.data.repo.TokenRepository, private val loginRepository: com.jnu.data.repo.LoginRepository) : ViewModel() {
     private val _userLoginState = MutableStateFlow(false)
     val userLoginState: StateFlow<Boolean> get() = _userLoginState.asStateFlow()
 
