@@ -1,7 +1,7 @@
 package com.jnu.togetherpet.di
 
-import com.jnu.togetherpet.data.datasource.TokenSource
-import com.jnu.togetherpet.data.repository.TokenRepository
+import com.jnu.data.repo.TokenRepository
+import com.jnu.network.datasource.TokenSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -4,12 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jnu.togetherpet.R
 import com.jnu.togetherpet.ui.fragment.community.CommunityFragment
 import com.jnu.togetherpet.ui.fragment.diary.DiaryFragment
-import com.jnu.togetherpet.ui.fragment.home.HomeFragment
-import com.jnu.togetherpet.ui.fragment.walking.WalkingPetFragment
-import com.jnu.togetherpet.ui.fragment.searching.SearchingPetFragment
+import com.jnu.home.HomeFragment
 
 class DashboardViewModel : ViewModel() {
     private val _selectedFragment = MutableLiveData<Fragment>()
@@ -17,12 +14,12 @@ class DashboardViewModel : ViewModel() {
 
     fun selectFragmentToShow(itemId: Int) {
         val fragment = when (itemId) {
-            R.id.bottom_home -> HomeFragment()
-            R.id.bottom_community -> CommunityFragment()
-            R.id.bottom_searching -> SearchingPetFragment()
-            R.id.bottom_diary -> DiaryFragment()
-            R.id.bottom_walking -> WalkingPetFragment()
-            else -> HomeFragment()
+            com.jnu.ui.R.id.bottom_home -> com.jnu.home.HomeFragment()
+            com.jnu.ui.R.id.bottom_community -> CommunityFragment()
+            com.jnu.ui.R.id.bottom_searching -> com.jnu.searching.SearchingPetFragment()
+            com.jnu.ui.R.id.bottom_diary -> DiaryFragment()
+            com.jnu.ui.R.id.bottom_walking -> com.jnu.walking.WalkingPetFragment()
+            else -> com.jnu.home.HomeFragment()
         }
         _selectedFragment.value = fragment
     }

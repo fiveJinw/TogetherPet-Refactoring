@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -15,5 +16,21 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "TogetherPet"
 include(":app")
+include(":core:model")
+include(":core:database")
+include(":core:network")
+include(":core:data")
+include(":feature:Login")
+include(":core:ui")
+include(":feature:registration")
+include(":core:datastore")
+include(":feature:walking")
+include(":core:common")
+include(":core:domain")
+include(":feature:home")
+include(":feature:searching")
+include(":core:designsystem")
+include(":core:testing")

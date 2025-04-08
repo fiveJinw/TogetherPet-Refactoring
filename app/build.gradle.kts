@@ -2,15 +2,14 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.togetherpet.android.application)
+    alias(libs.plugins.togetherpet.hilt)
 }
 
 android {
     namespace = "com.jnu.togetherpet"
-    compileSdk = 34
 
     defaultConfig {
         ndk {
@@ -19,11 +18,6 @@ android {
             abiFilters.add("x86")
             abiFilters.add("x86_64")
         }
-        applicationId = "com.jnu.togetherpet"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 2
-        versionName = "1.01"
 
         testInstrumentationRunner = "com.example.togetherpet.CustomTestRunner"
 
@@ -62,15 +56,6 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -88,7 +73,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation(libs.androidx.activity)
     implementation("com.kakao.sdk:v2-user:2.20.6")
     implementation("com.kakao.maps.open:android:2.11.9")
     implementation("com.google.android.gms:play-services-location:21.3.0")
@@ -96,6 +80,18 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.1")
     implementation("androidx.test:core-ktx:1.6.1")
+    implementation(projects.core.model)
+    implementation(projects.core.database)
+    implementation(projects.core.network)
+    implementation(projects.core.data)
+    implementation(projects.feature.login)
+    implementation(projects.core.datastore)
+    implementation(projects.core.ui)
+    implementation(projects.core.common)
+    implementation(projects.feature.walking)
+    implementation(projects.feature.home)
+    implementation(projects.core.domain)
+    implementation(projects.feature.searching)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test:rules:1.6.1")
